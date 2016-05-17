@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<!--
+Главная форма
+-->
+<html>
+    <head>
+        <title>Добро пожаловать в АСУ-Перевозки</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <!-- Bootstrap 3.3.5 -->
+        <link rel="stylesheet" href="framework/bootstrap/css/bootstrap.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="framework/font-awesome/css/font-awesome.min.css">
+        <!-- DataTables -->
+        <link rel="stylesheet" href="framework/plugins/datatables/dataTables.bootstrap.css">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="framework/dist/css/AdminLTE.css">
+        <!-- AdminLTE Skins. Choose a skin from the css/skins
+             folder instead of downloading all of them to reduce the load. -->
+        <link rel="stylesheet" href="framework/dist/css/skins/_all-skins.min.css">
+        <!-- iCheck -->
+        <link rel="stylesheet" href="framework/plugins/iCheck/flat/blue.css">
+        <!-- Morris chart -->
+        <link rel="stylesheet" href="framework/plugins/morris/morris.css">
+        <!-- jvectormap -->
+        <link rel="stylesheet" href="framework/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+        <!-- Date Picker -->
+        <link rel="stylesheet" href="framework/plugins/datepicker/datepicker3.css">
+        <!-- Daterange picker -->
+        <link rel="stylesheet" href="framework/plugins/daterangepicker/daterangepicker-bs3.css">
+        <!-- bootstrap wysihtml5 - text editor -->
+        <link rel="stylesheet" href="framework/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+       
+        <link rel="stylesheet" href="framework/jQuery-contextMenu/jquery.contextMenu.css">
+         
+    </head>
+<body class="hold-transition skin-blue-light sidebar-mini">
+     <!--Шапка и меню-->
+    <div class="wrapper">
+
+      <!-- Main Header -->
+      <header class="main-header">
+
+        <!-- Logo -->
+        <a href="main.html" class="logo">
+          <!-- mini logo for sidebar mini 50x50 pixels -->
+          <span class="logo-mini"><b>А</b>СУ</span>
+          <!-- logo for regular state and mobile devices -->
+          <span class="logo-lg"><b>АСУ</b> Перевозки</span>
+        </a>
+
+        <!-- Header Navbar -->
+        <nav class="navbar navbar-static-top" role="navigation">
+          <!-- Sidebar toggle button-->
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+          </a>
+          
+          <div class="btn">
+           <button type="button" class="btn btn-primary">Кандыагаш&nbsp;&nbsp;&nbsp;<i class="fa fa-flag-o"></i></button>
+           <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
+            <span class="caret"></span>
+            <span class="sr-only"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="#">Кандыагаш</a></li>
+              <li><a href="#">Алга</a></li>
+              <li><a href="#">Темир</a></li>
+              <li><a href="#">Достык</a></li>
+            </ul>
+           </div>
+
+          
+          <!-- Navbar Right Menu -->
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+              <!-- Messages: style can be found in dropdown.less-->
+              <li class="dropdown messages-menu">
+                <!-- Menu toggle button -->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-envelope-o"></i>
+                  <span class="label label-success">1</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header"><b>У вас 1 сообщения</b></li>
+                  <li class="footer"><a href="#">Просмотреть сообщения</a></li>
+                </ul>
+              </li><!-- /.messages-menu -->
+
+              <!-- Notifications Menu -->
+              <!--li class="dropdown notifications-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-bell-o"></i>
+                  <span class="label label-warning">10</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header"><b>У вас 10 уведомлений</b></li>
+                  <li class="footer"><a href="#">Просмотреть</a></li>
+                </ul>
+              </li-->
+              
+              <!-- Tasks Menu -->
+              <li class="dropdown tasks-menu">
+                <!-- Menu Toggle Button -->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-flag-o"></i>
+                  <span class="label label-danger">4</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header"><b>4 поездов в подходе</b></li>
+                  <li class="footer"><a href="#">Перейти в подход</a>
+                  </li>
+                </ul>
+              </li>
+              <!-- User Account Menu -->
+              <li class="dropdown user user-menu">
+                <!-- Menu Toggle Button -->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <!-- The user image in the navbar-->
+                  <img src="framework/dist/img/ktz.jpg" class="user-image" alt="User Image">
+                  <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                  <span class="hidden-xs">Работник станции</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- The user image in the menu -->
+                  <li class="user-header">
+                    <img src="framework/dist/img/ktz.jpg" class="img-circle" alt="User Image">
+                    <p>
+                      Иван Иванович
+                    </p>
+                  </li>
+                  <li class="user-footer">
+                    <div class="pull-right">
+                      <a href="#" class="btn btn-danger btn-flat">Выход</a>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <!-- Control Sidebar Toggle Button -->
+              <li>
+                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!-- Left side column. contains the logo and sidebar -->
+      <aside class="main-sidebar">
+
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+
+          <ul class="sidebar-menu">
+            <!-- Optionally, you can add icons to the links -->
+            
+            
+           <li class="active treeview">
+              <a href="#"><i class="fa fa-home"></i> <span>Подход</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a href="#">Все направления</a></li>  
+                <li><a href="#">1 - Актобе</a></li>
+                <li><a href="#">2 - Никельтау</a></li>
+                <li><a href="#">3 - Жем</a></li>
+                <li><a href="#">4 - Шубаркудык</a></li>
+                <li><a href="#">5 - Жаксымай</a></li>
+                <li><a href="#">6 - Алга</a></li>
+                <li><a href="#">7 - Жазык</a></li>
+                <li><a href="#">8 - Актобе-2</a></li>
+                <li><a href="#">9 - Актобе</a></li>
+              </ul>
+           </li>
+            
+            <li class="treeview">
+              <a href="#"><i class="fa fa-sitemap"></i> <span>Парки станции</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                  
+                <li><a href="#"><i class="fa fa-code-fork"></i>ПОП<i class="fa fa-angle-left pull-right"></i></a>
+                   <ul class="treeview-menu">
+                       <li class="puti"><a href="park_01.html">01 - Предгорочный <i class="fa fa-angle-left pull-right"></i></a>
+                          <ul class="treeview-menu">
+                              <li><a href="#"><i class="fa fa-road"></i>00</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>01</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>02 <i class="fa fa-angle-left pull-right"></i></a>
+                                  <ul>
+                                      <li><a href="tgnl_02.html"><i class="fa fa-train"></i><font color="#FF0000"> <b>3471 6611 053 6600</b></font></a></li>
+                                  </ul>
+                              </li>
+                              <li><a href="#"><i class="fa fa-road"></i>03 <i class="fa fa-angle-left pull-right"></i></a>
+                                  <ul>
+                                      <li><a href="#"><i class="fa fa-train"></i><font color="#FF0000"> <b>3478 6686 074 6600</b></font></a></li>
+                                  </ul>
+                              </li>
+                              <li><a href="#"><i class="fa fa-road"></i>04 <i class="fa fa-angle-left pull-right"></i></a>
+                                  <ul>
+                                      <li><a href="#"><i class="fa fa-train"></i><font color="#FF0000"> <b>4401 6606 018 6600</b></font></a></li>
+                                  </ul>
+                              </li>
+                              <li><a href="#"><i class="fa fa-road"></i>05</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>06  <i class="fa fa-angle-left pull-right"></i></a>
+                                  <ul>
+                                      <li><a href="#"><i class="fa fa-train"></i><font color="#FF0000"> <b>3002 6678 025 6600</b></font></a></li>
+                                  </ul>
+                              </li>
+                              <li><a href="#"><i class="fa fa-road"></i>07</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>08  <i class="fa fa-angle-left pull-right"></i></a>
+                                  <ul>
+                                      <li><a href="#"><i class="fa fa-train"></i><font color="#FF0000"> <b>0108 6600 004 6600</b></font></a></li>
+                                  </ul>
+                              </li>
+                              <li><a href="#"><i class="fa fa-road"></i>09</a></li>
+                          </ul> 
+                      </li>
+                      <li class="puti"><a href="#">02 - Отправочный<i class="fa fa-angle-left pull-right"></i></a>
+                          <ul class="treeview-menu">
+                              <li><a href="#"><i class="fa fa-road"></i>00</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>43</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>44</a>
+                                  <ul>
+                                      <li><a href="#"><i class="fa fa-train"></i><font color="#FF0000"> <b>3402 6600 178 6611</b></font></a></li>
+                                  </ul>
+                              </li>
+                              <li><a href="#"><i class="fa fa-road"></i>45</a>
+                                  <ul>
+                                      <li><a href="#"><i class="fa fa-train"></i><font color="#FF0000"> <b>2829 6600 045 6669</b></font></a></li>
+                                  </ul>
+                              </li>
+                              <li><a href="#"><i class="fa fa-road"></i>46</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>47</a>
+                                  <ul>
+                                      <li><a href="#"><i class="fa fa-train"></i><font color="#FF0000"> <b>2833 6600 071 6831</b></font></a></li>
+                                  </ul>
+                              </li>
+                              <li><a href="#"><i class="fa fa-road"></i>48</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>49</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>50</a>
+                                  <ul>
+                                      <li><a href="#"><i class="fa fa-train"></i><font color="#FF0000"> <b>402 6600 177 6611</b></font></a></li>
+                                  </ul>
+                              </li>
+                              <li><a href="#"><i class="fa fa-road"></i>55</a></li>
+                          </ul> 
+                      </li>
+                      <li><a href="#">04 - ПОП<i class="fa fa-angle-left pull-right"></i></a>
+                          <ul class="treeview-menu">
+                              <li><a href="#"><i class="fa fa-road"></i>00</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>01</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>02</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>03</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>04</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>05</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>06</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>07</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>08</a></li>
+                          </ul>
+                      </li>
+                      <li><a href="#">05 - Грузовой<i class="fa fa-angle-left pull-right"></i></a>
+                           <ul class="treeview-menu">
+                              <li><a href="#"><i class="fa fa-road"></i>00</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>26</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>27</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>28</a></li>
+                          </ul>
+                      </li>
+                      <li><a href="#">06</a>
+                      
+                      </li>
+                      <li><a href="#">07 - МВРП<i class="fa fa-angle-left pull-right"></i></a>
+                          <ul class="treeview-menu">
+                              <li><a href="#"><i class="fa fa-road"></i>00</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>23</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>31</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>32</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>33</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>34</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>35</a></li>
+                          </ul>
+                      </li>
+                      <li><a href="#">08<i class="fa fa-angle-left pull-right"></i></a>
+                          <ul class="treeview-menu">
+                              <li><a href="#"><i class="fa fa-road"></i>01</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>02</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>03</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>04</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>05</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>06</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>07</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>08</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>09</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>10</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>11</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>12</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>13</a></li>
+                              <li><a href="#"><i class="fa fa-road"></i>14</a></li>                              
+                          </ul>
+                      </li>
+                      <li><a href="#">09<i class="fa fa-angle-left pull-right"></i></a>
+                      
+                      </li>
+                   </ul>    
+                </li>
+         
+                <li><a href="#"><i class="fa fa-random"></i>СОРТ<i class="fa fa-angle-left pull-right"></i></a>
+                  <ul class="treeview-menu">
+                     <li><a href="#">02</a></li>
+                     <li><a href="#">03</a></li>
+                     <li><a href="#">04</a></li>
+                     <li><a href="#">05</a></li>
+                     <li><a href="#">06</a></li>
+                     <li><a href="#">07</a></li>
+                     <li><a href="#">08</a></li>
+                     <li><a href="#">09</a></li>
+                     <li><a href="#">10</a></li>
+                     <li><a href="#">11</a></li>
+                     <li><a href="#">12</a></li>
+                     <li><a href="#">13</a></li>
+                     <li><a href="#">14</a></li>
+                     <li><a href="#">15</a></li>
+                     <li><a href="#">16</a></li>
+                     <li><a href="#">17</a></li>
+                     <li><a href="#">18</a></li>
+                     <li><a href="#">19</a></li>
+                     <li><a href="#">20</a></li>
+                     <li><a href="#">21</a></li>
+                     <li><a href="#">22</a></li>
+                  </ul>
+                </li>
+
+              </ul>                      
+            </li>
+     
+          </ul><!-- /.sidebar-menu -->
+           
+          <!-- Sidebar Menu -->
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            ПОДХОД:
+            <small>  </small>
+          </h1>
+        </section>
+        
+        <!-- Main content -->
+        <section class="content" >        
+            <div class="row">
+             <div class="col-xs-12">
+                <div class="box">
+                  <div class="box-header"><h3 class="box-title">Кандыагаш</h3></div><!-- /.box-header -->
+                   <div class="box-body">
+                     <div class="table-responsive">                                               
+                     <table id="example2" class="table table-bordered table-hover context-menu-one dataTable">
+                       <thead>
+                           <tr class="info">
+                        <th>Cт.пер</th>
+                        <th>№ поезда</th>
+                        <th>Ст.форм</th>
+                        <th>№ состава</th>
+                        <th>Ст.назн</th>
+                        <th>Дата&nbsp;и&nbsp;время&nbsp;отпр.</th>
+                        <th>Местный</th>
+                        <th>Усл.дл<br>НЛГ</th>
+                        <th>Кол.<br>ваг</th>
+                        <th>Вес<br>поезда</th>
+                        <th>Охр<br>ваг</th>
+                        <th>Негаб.<br>длина</th>
+                        <th>Живн.</th>
+                        <th>Нал.с&nbsp;05</th>
+                     </tr>
+                       </thead>
+                      <tbody>
+                      <tr>
+                        <td>6600</td>
+                        <td>3474</td>
+                        <td>6686</td>
+                        <td>040</td>
+                        <td>6600</td>
+                        <td>01.04.2016 10:35</td>
+                        <td>   </td>
+                        <td>68</td>
+                        <td>63</td>
+                        <td>5207</td>
+                        <td>1</td>
+                        <td>0000</td>
+                        <td>0</td>
+                        <td>   </td>
+                      </tr>
+                      <tr>
+                        <td>6605</td>
+                        <td>4401</td>
+                        <td>0001</td>
+                        <td>035</td>
+                        <td>6600</td>
+                        <td>02.03.2016 11:45</td>
+                        <td>   </td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0000</td>
+                        <td>0</td>
+                        <td>   </td>
+                      </tr>
+                       <tr>
+                        <td>6605</td>
+                        <td>2849</td>
+                        <td>6611</td>
+                        <td>066</td>
+                        <td>6600</td>
+                        <td>02.03.2016 16:07</td>
+                        <td>   </td>
+                        <td>71</td>
+                        <td>61</td>
+                        <td>2992</td>
+                        <td>1</td>
+                        <td>0000</td>
+                        <td>0</td>
+                        <td>   </td>
+                      </tr>
+                       <tr>
+                        <td>6605</td>
+                        <td>0041</td>
+                        <td>0000</td>
+                        <td>002</td>
+                        <td>0042</td>
+                        <td>02.03.2016 18:02</td>
+                        <td>   </td>
+                        <td>24</td>
+                        <td>13</td>
+                        <td>741</td>
+                        <td>0</td>
+                        <td>0000</td>
+                        <td>0</td>
+                        <td>   </td>
+                      </tr>
+                    </tbody>
+                     </table>
+                   </div><!--table-responsive-->
+                   
+                  </div><!-- /.box-body -->     
+                </div><!-- /.box-->
+             </div><!-- /.col -->
+          </div><!-- /.row -->
+       
+          
+        </section><!-- /.content -->
+
+          <!-- Your Page Content Here -->
+      
+      </div><!-- /.content-wrapper -->
+
+      
+      
+      
+      <!-- Main Footer -->
+      <footer class="main-footer">
+          
+          
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">Входящии сообщения </h3>
+                  <!-- tools box -->
+                  <div class="pull-right box-tools">
+                    <button class="btn btn-default btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+                  </div><!-- /. tools -->
+                </div><!-- /.box-header -->
+                <div class="box-body pad">
+                  <form>
+                      <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+(:0497 BЦ RVIM 1167005 05 02 11 41 002:
+  Ю1 0001 09 003 000 6669+030+6600:
+  Ю2 000 .14 6669+030+6600:
+  Ю1 0001 09 004 000 6669+028+6600:
+  Ю2 000 .14 6669+028+6600:)
+
+                      </textarea>
+                  </form>
+                </div>
+              </div>
+          
+          
+          
+          
+        <!-- To the right 
+        <div class="pull-right hidden-xs">
+          Клуб великих разработчиков Java
+        </div>
+       
+        <strong>ЦЛР-Актобе &copy; 2016.</strong-->
+      </footer>
+
+      
+      
+      
+      
+      
+      <!-- Control Sidebar -->
+      <aside class="control-sidebar control-sidebar-light">
+        <!-- Create the tabs -->
+        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+          <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+          <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <!-- Home tab content -->
+          <div class="tab-pane active" id="control-sidebar-home-tab">
+            <h3 class="control-sidebar-heading">Дополнительно</h3>
+            <ul class="control-sidebar-menu">
+            <li>
+              <a href="#"><i class="fa fa-link"></i> <span>Журнал учета</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a href="#">Системный журнал</a></li>
+              </ul>
+            </li>
+            
+            <li>
+              <a href="#"><i class="fa fa-link"></i> <span>Сервис</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a href="#">Нормативные документы</a></li>
+                <li><a href="pages/calendar.html">Календарь</a></li>
+                <li><a href="#">Справка</a></li>
+              </ul>
+            </li>
+            </ul><!-- /.control-sidebar-menu -->
+
+
+          </div><!-- /.tab-pane -->
+          <!-- Stats tab content -->
+          <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div><!-- /.tab-pane -->
+          <!-- Settings tab content -->
+          <div class="tab-pane" id="control-sidebar-settings-tab">
+            <form method="post">
+              <h3 class="control-sidebar-heading">Основные настройки</h3>
+
+            </form>
+          </div><!-- /.tab-pane -->
+        </div>
+      </aside><!-- /.control-sidebar -->
+      <!-- Add the sidebar's background. This div must be placed
+           immediately after the control sidebar -->
+      <div class="control-sidebar-bg"></div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </div>
+    
+   <div class="modal fade" id="soob_prib" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">201 - СООБЩЕНИЕ О ПРИБЫТИИ</h4>
+        <hr>
+      </div>
+      <div class="modal-body">
+      <div class="panel panel-primary">
+        <div class="panel-body">
+          <div class="form-group">
+            <label for="nom_poezd" class="col-sm-2 control-label">Номер поезда</label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" id="nom_poezd" value="3474">
+            </div>
+          </div>
+          <br><br>
+          <div class="form-group">
+            <label for="index_poezd1" class="col-sm-2 control-label">Индекс поезда</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="index_poezd1" value="6686">
+            </div>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" id="index_poezd2" value="040">
+            </div>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" id="index_poezd3" value="6600">
+            </div>
+          </div>
+          <br><br>
+          <div class="form-group">
+            <label for="naprav_prib" class="col-sm-2 control-label">Направление прибытия</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="naprav_prib" value="668600 - Никельтау">
+            </div>
+          </div>
+          <br><br>
+        </div>
+      </div>
+
+      <div class="panel panel-primary">
+        <div class="panel-body">
+          <div class="form-group">
+            <label for="date" class="col-sm-2 control-label">Дата</label>
+            <div class="col-sm-4">
+              <input type="date" class="form-control" id="date" value="2016-01-01">
+            </div>
+            <label for="time" class="col-sm-2 control-label">Время</label>
+            <div class="col-sm-4">
+              <input type="time" class="form-control" id="time" value="10:00">
+            </div>
+          </div>
+          <br><br>
+          <div class="form-group">
+            <label for="park" class="col-sm-2 control-label">Парк</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="park" value="0">
+            </div>
+            <label for="put" class="col-sm-2 control-label">Путь</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="put" value="0">
+            </div>
+          </div>
+           <br><br>
+          <div class="form-group">
+            <label for="rabota_s_lol" class="col-sm-2 control-label">Работа с локомотивом</label>
+            <div class="col-sm-4">
+              <select class="form-control" id="rabota_s_lol">
+                <option>работы нет</option>
+                <option>отцепка локомотива</option>
+                <option>смена бригад</option>
+              </select>
+            </div>
+            <label for="kol_lok" class="col-sm-2 control-label">Кол-во локомотивов</label>
+            <div class="col-sm-4">
+              <select class="form-control" id="kol_lok">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-primary">
+        <div class="panel-body">
+          <div class="form-group">
+            <label for="kod_serii_lok" class="col-sm-4 control-label">Код серии локомотива</label>
+            <div class="col-sm-5">
+              <select class="form-control" id="kod_serii_lok">
+                <option>572 - 0039 - 2ТЭ10МК - секций - 2</option>
+                <option>572 - 0049 - 2ТЭ10МК - секций - 2</option>
+                <option>572 - 0061 - 2ТЭ10МК - секций - 2</option>
+                <option>572 - 0078 - 2ТЭ10МК - секций - 2</option>
+              </select>
+            </div>
+          </div>
+          <br><br>
+          <div class="form-group">
+            <label for="nom_lok" class="col-sm-4 control-label">Номер локомотива</label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" id="nom_lok" value="07921">
+            </div>
+          </div>
+          <br><br>
+          <div class="form-group">
+            <label for="vid_sled_lok" class="col-sm-4 control-label">Вид следования локомотива</label>
+            <div class="col-sm-5">
+              <select class="form-control" id="vid_sled_lok">
+                <option>Движение в голове локомотива</option>
+                <option>Движение в двойной тяге</option>
+                <option>Движение в пересылке</option>
+              </select>
+            </div>
+          </div>
+          <br><br>
+        </div>
+      </div>
+
+      <div class="panel panel-primary">
+        <div class="panel-body">
+          <div class="form-group">
+            <label for="fam_mash" class="col-sm-2 control-label">Фамилия машиниста</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="fam_mash">
+            </div>
+            <label for="vrem_mash" class="col-sm-2 control-label">Время</label>
+            <div class="col-sm-4">
+              <input type="time" class="form-control" id="vrem_mash" value="10:00">
+            </div>
+          </div>
+<br><br>
+          <div class="form-group">
+            <label for="depo_prop" class="col-sm-2 control-label">Депо прописки</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="depo_prop" value="07921">
+            </div>
+            <label for="tab_nom" class="col-sm-2 control-label">Табельный номер</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="tab_nom" value="0000">
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+        <button type="button" class="btn btn-primary" id="soob_otpr_save">Принять</button>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+
+       
+       
+       
+       
+       
+       
+       
+       
+            
+            
+  
+    
+        <!-- jQuery 2.1.4 -->
+    <script src="framework/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="framework/bootstrap/js/bootstrap.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="framework/dist/js/app.min.js"></script>
+
+    <!-- jQuery-contextMenu -->
+    <script src="framework/jQuery-contextMenu/jquery.contextMenu.js"></script>
+    <script src="framework/jQuery-contextMenu/contextMenu.js"></script>
+
+    
+    <script>
+    $(document).ready(function () {
+      $('ul.treeview-menu li.puti a').on("click", function(e){
+        var child_li_arr = $(this).next();
+        if ($(child_li_arr).find('li.active').length > 0) {
+          $(child_li_arr).find('li').has('ul').removeClass('active');
+          $(child_li_arr).find('li').find('ul').removeClass('menu-open').css('display','none');
+          return e.preventDefault();
+        }
+        setTimeout(
+          function(child_li_arr) {
+            $(child_li_arr).find('li').has('ul').addClass('active');
+            $(child_li_arr).find('li').find('ul').addClass('menu-open').css('display','block');
+          },
+          800,
+          child_li_arr
+        );
+      });
+    });
+    </script>
+    
+    </body>
+    
+</html>

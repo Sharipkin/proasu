@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="EAR_ProASU">
+        <wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
+        <dependent-module archiveName="Web_ProASU.war" deploy-path="/" handle="module:/resource/Web_ProASU/Web_ProASU">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="EJB_ProASU.jar" deploy-path="/" handle="module:/resource/EJB_ProASU/EJB_ProASU">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="EJB_ProASUClient.jar" deploy-path="/" handle="module:/resource/EJB_ProASUClient/EJB_ProASUClient">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="EJB_Import.jar" deploy-path="/" handle="module:/resource/EJB_Import/EJB_Import">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>
