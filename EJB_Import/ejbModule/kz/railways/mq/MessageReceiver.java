@@ -21,7 +21,7 @@ public class MessageReceiver implements MessageListener {
     		bm.readBytes(data);
     		String content = new String(data);
 			System.out.println(content);
-			System.out.println(" ----------------END---------------------");
+			System.out.println(" -------------------------END-----------------------------");
 		} catch (JMSException e) {
 			e.printStackTrace();
 		}  
