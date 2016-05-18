@@ -44,8 +44,7 @@ public class UserFilter implements Filter {
                 User user = userService.find(remoteUser);
                 session.setAttribute("user", user);
                 
-                List<Napr> naprs = naprBean.getNapr(user.getKodSt());
-                              
+                List<Napr> naprs = naprBean.getNapr(user.getKodSt());        
                 session.setAttribute("naprs", naprs);    
 
             }

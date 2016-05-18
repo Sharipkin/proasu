@@ -15,9 +15,6 @@ import javax.sql.DataSource;
 import kz.railaws.workstation.PodhodBeanLocal;
 import kz.railways.entities.Podhod;
 
-/**
- * Session Bean implementation class PodhodBean
- */
 @Stateless
 @LocalBean
 public class PodhodBean implements PodhodBeanLocal {
@@ -32,12 +29,10 @@ public class PodhodBean implements PodhodBeanLocal {
 		
 		List<Podhod> lp = new ArrayList<>();
 		
-		try {
-			
-			Connection conn = dataSource.getConnection();
+		try (Connection conn = dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
-
+			ResultSet rs = ps.executeQuery();)	
+		{
 			while (rs.next())
 			{
 				Podhod poezd = new Podhod();
@@ -55,10 +50,6 @@ public class PodhodBean implements PodhodBeanLocal {
 				lp.add(poezd);
 				
 			}
-			
-			rs.close();
-			ps.close();
-			conn.close();
 			
 		} catch (SQLException e) 
 		{

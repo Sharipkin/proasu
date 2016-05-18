@@ -2,8 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<c:set var="nps" value="${sessionScope.naprs}"/> 
-
 <jsp:useBean id="naprs" type="java.util.List<kz.railways.entities.Napr>" scope="session">
     <jsp:getProperty property="naprs" name="kod"/>
     <jsp:getProperty property="naprs" name="naim"/>
@@ -17,12 +15,9 @@
 		<li><c:out value="${napr.naim}" /></li>
 		
 		<c:forEach var="napr" items="${naprs }">
-			<li><a href="?napr=${napr.kod }">${napr.kod } - ${napr.naim }</a></li>
+			<li><a href="podhod?napr=${napr.kod }">${napr.kod } - ${napr.naim }</a></li>
 		</c:forEach>
-		
-		<c:forEach var="np" items="${nps }">
-			<li><a href="#">${np.naim }</a></li>
-		</c:forEach>
+
 	</ul></li>
 
 <li class="treeview"><a href="#"><i class="fa fa-sitemap"></i>
