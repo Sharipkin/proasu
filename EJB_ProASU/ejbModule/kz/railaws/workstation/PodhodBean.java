@@ -13,7 +13,7 @@ import javax.ejb.Stateless;
 import javax.sql.DataSource;
 
 import kz.railaws.workstation.PodhodBeanLocal;
-import kz.railways.model.Podhod;
+import kz.railways.entities.Podhod;
 
 /**
  * Session Bean implementation class PodhodBean

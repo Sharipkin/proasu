@@ -12,6 +12,9 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.sql.DataSource;
 
+import kz.railways.beans.UserServiceBeanLocal;
+import kz.railways.entities.User;
+
 @Stateless
 @LocalBean
 public class UserServiceBean implements UserServiceBeanLocal {
