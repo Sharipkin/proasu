@@ -1,8 +1,10 @@
-package kz.railways.model;
+package kz.railways.beans;
 
 import java.util.List;
 
 import javax.ejb.Local;
+
+import kz.railways.entities.User;
 
 @Local
 public interface UserServiceBeanLocal {

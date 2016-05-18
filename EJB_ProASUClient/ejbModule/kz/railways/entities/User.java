@@ -1,4 +1,4 @@
-package kz.railways.model;
+package kz.railways.entities;
 
 import java.io.Serializable;
 import java.util.List;

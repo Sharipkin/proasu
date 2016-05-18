@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 
-import kz.railways.model.Podhod;
+import kz.railways.entities.Podhod;
 
 @Local
 public interface PodhodBeanLocal {
