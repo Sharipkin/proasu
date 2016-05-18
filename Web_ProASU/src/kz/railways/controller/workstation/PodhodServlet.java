@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kz.railaws.workstation.PodhodBeanLocal;
-import kz.railways.model.Podhod;
-import kz.railways.model.User;
+import kz.railways.entities.Podhod;
+import kz.railways.entities.User;
 
 @WebServlet("/podhod")
 public class PodhodServlet extends HttpServlet {

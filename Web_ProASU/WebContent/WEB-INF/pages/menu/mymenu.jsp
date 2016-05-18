@@ -1,18 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<c:set var="nps" value="${sessionScope.naprs}"/> 
+
+<jsp:useBean id="naprs" type="java.util.List<kz.railways.entities.Napr>" scope="session">
+    <jsp:getProperty property="naprs" name="kod"/>
+    <jsp:getProperty property="naprs" name="naim"/>
+</jsp:useBean>	
+
 <li class="treeview"><a href="#"><i class="fa fa-home"></i> <span>Подход</span>
 		<i class="fa fa-angle-left pull-right"></i></a>
 	<ul class="treeview-menu">
 		<li><a href="podhod">Все направления</a></li>
-		<li><a href="#">1 - Актобе</a></li>
-		<li><a href="#">2 - Никельтау</a></li>
-		<li><a href="#">3 - Жем</a></li>
-		<li><a href="#">4 - Шубаркудык</a></li>
-		<li><a href="#">5 - Жаксымай</a></li>
-		<li><a href="#">6 - Алга</a></li>
-		<li><a href="#">7 - Жазык</a></li>
-		<li><a href="#">8 - Актобе-2</a></li>
-		<li><a href="#">9 - Актобе</a></li>
+		
+		<li><c:out value="${napr.naim}" /></li>
+		
+		<c:forEach var="napr" items="${naprs }">
+			<li><a href="?napr=${napr.kod }">${napr.kod } - ${napr.naim }</a></li>
+		</c:forEach>
+		
+		<c:forEach var="np" items="${nps }">
+			<li><a href="#">${np.naim }</a></li>
+		</c:forEach>
 	</ul></li>
 
 <li class="treeview"><a href="#"><i class="fa fa-sitemap"></i>

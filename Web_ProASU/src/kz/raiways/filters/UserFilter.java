@@ -1,6 +1,8 @@
 package kz.raiways.filters;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.servlet.Filter;
@@ -13,12 +15,11 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import kz.railways.model.User;
-import kz.railways.model.UserServiceBeanLocal;
+import kz.railways.beans.UserServiceBeanLocal;
+import kz.railways.entities.Napr;
+import kz.railways.entities.User;
 
-/**
- * Servlet Filter implementation class UserFilter
- */
+
 @WebFilter("/*")
 public class UserFilter implements Filter {
 
@@ -39,6 +40,26 @@ public class UserFilter implements Filter {
             if (session.getAttribute("user") == null) {
                 User user = userService.find(remoteUser);
                 session.setAttribute("user", user);
+                
+                List<Napr> naprs = new ArrayList<Napr>();
+                Napr napr = new Napr();
+                napr.setKod(1);
+                napr.setNaim("¿ “Œ¡≈-1");
+                Napr napr2 = new Napr();
+                napr2.setKod(2);
+                napr2.setNaim("Õ» ≈À‹-“¿”");
+                Napr napr3 = new Napr();
+                napr3.setKod(3);
+                napr3.setNaim("ÿ”¡¿–- ”ƒ” ");
+                Napr napr4 = new Napr();
+                napr4.setKod(4);
+                napr4.setNaim("¿À√¿");
+                naprs.add(napr);
+                naprs.add(napr2);
+                naprs.add(napr3);
+                naprs.add(napr4);
+                session.setAttribute("naprs", naprs);    
+                session.setAttribute("napr", napr); 
             }
         }
 		chain.doFilter(request, response);

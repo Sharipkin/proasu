@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kz.railways.model.User;
-import kz.railways.model.UserServiceBeanLocal;
+import kz.railways.beans.UserServiceBeanLocal;
+import kz.railways.entities.User;
 
 
 @WebServlet("/user")

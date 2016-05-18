@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kz.railways.model.UserServiceBeanLocal;
+import kz.railways.beans.UserServiceBeanLocal;
 
 @WebServlet("/switchstation")
 public class SwitchStationServlet extends HttpServlet {
