@@ -8,8 +8,8 @@ public class User implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private String name;
-	private String kodSt;
-	private List<String> listKodSt;
+	private Station station;
+	private List<Station> listStations;
 	
 	public String getName() {
 		return name;
@@ -17,17 +17,17 @@ public class User implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getKodSt() {
-		return kodSt;
+	public Station getStation() {
+		return station;
 	}
-	public void setKodSt(String kodSt) {
-		this.kodSt = kodSt;
+	public void setStation(Station station) {
+		this.station = station;
 	}
-	public List<String> getListKodSt() {
-		return listKodSt;
+	public List<Station> getListStations() {
+		return listStations;
 	}
-	public void setListKodSt(List<String> listKodSt) {
-		this.listKodSt = listKodSt;
+	public void setListStations(List<Station> listStations) {
+		this.listStations = listStations;
 	}
 		
 }

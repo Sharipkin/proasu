@@ -13,10 +13,25 @@ import kz.railways.beans.UserServiceBeanLocal;
 
 @WebServlet("/switchstation")
 public class SwitchStationServlet extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
 	
 	@EJB
     private UserServiceBeanLocal userService;
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		String kodSt = req.getParameter("userkodst");
+		
+		String remoteUser = req.getRemoteUser();
+
+		userService.switchStation(remoteUser, kodSt);
+		
+		req.getSession().setAttribute("user", null);
+	
+		resp.sendRedirect("index");
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

@@ -10,12 +10,11 @@
 <body>
 <h2>Пользователь: <%= request.getRemoteUser() %></h2>
 <form action="switchstation" method="post">
-
 	<c:forEach var="list" items="${listkodst }">
 	  
 	  <input type="radio" name="userkodst" 
-	  	value="${list }"<c:if test="${list == activkodst}"> checked </c:if> >
-	 	 ${list }<br>
+	  	value="${list.kod }"<c:if test="${list.active}"> checked </c:if> >
+	 	 ${list.kod}<br>
 	 
 	</c:forEach>
 	<input type="submit" value="Изменить код станции">

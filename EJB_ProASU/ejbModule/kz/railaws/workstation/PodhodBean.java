@@ -60,4 +60,10 @@ public class PodhodBean implements PodhodBeanLocal {
 		return lp;
 	}
 
+	@Override
+	public String test() {
+		// TODO Auto-generated method stub
+		return "test";
+	}
+
 }

@@ -10,5 +10,6 @@ import kz.railways.entities.Podhod;
 public interface PodhodBeanLocal {
 	
 	public List<Podhod> showPodhod(String kodst);
+	public String test();
 
 }

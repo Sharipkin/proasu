@@ -25,7 +25,7 @@ public class PodhodServlet extends HttpServlet {
 
 		User user = (User) request.getSession().getAttribute("user");
 		
-		List<Podhod> lp = podhodBean.showPodhod(user.getKodSt());
+		List<Podhod> lp = podhodBean.showPodhod(user.getStation().getKod());
 		
 		/*for (Podhod p: lp)
 		{

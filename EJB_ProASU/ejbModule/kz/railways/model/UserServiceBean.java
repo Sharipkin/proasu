@@ -13,41 +13,42 @@ import javax.ejb.Stateless;
 import javax.sql.DataSource;
 
 import kz.railways.beans.UserServiceBeanLocal;
+import kz.railways.entities.Station;
 import kz.railways.entities.User;
 
 @Stateless
 @LocalBean
 public class UserServiceBean implements UserServiceBeanLocal {
 
-    @Resource(mappedName = "jdbc/DB2Asuss")
+	@Resource(mappedName = "jdbc/DB2Asuss")
     private DataSource dataSource;
-    
 
 	@Override
 	public User find(String name) {
 		
 		User user = new User();
 		
-		String sql = "select U.USERNAME as username, US.KOD_ST as kodst from USERS as U " +
+		String sql = "select U.USERNAME as username, US.KOD_ST as kodst, S.NAIM_ST as naimst from USERS as U " +
 					 "INNER JOIN USER_STATIONS as US on US.USER_ID = U.ID  " +
+				     "INNER JOIN STATION as S on S.KOD_ST = US.KOD_ST " + 
 					 "WHERE US.ACTIV_ST = 1 AND U.USERNAME like ?";
 		
-		try {
+		try (Connection conn = dataSource.getConnection();
+			 PreparedStatement ps = conn.prepareStatement(sql);){
 			
-			Connection conn = dataSource.getConnection();
-			PreparedStatement ps = conn.prepareStatement(sql);
+			
 			ps.setString(1, name);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next())
 			{
 				user.setName(rs.getString("username"));
-				user.setKodSt(rs.getString("kodst"));
+				user.setStation(new Station(rs.getString("kodst"), rs.getString("naimst"), true));
 			}
 			
 			rs.close();
-			ps.close();
-			conn.close();
+			
+			user.setListStations(this.getStations(user.getName()));
 			
 		} catch (SQLException e) 
 		{
@@ -62,30 +63,29 @@ public class UserServiceBean implements UserServiceBeanLocal {
 
 
 	@Override
-	public List<String> getStations(String name) {
-		List<String> listKodSt = new ArrayList<String>();
+	public List<Station> getStations(String name) {
+		List<Station> listKodSt = new ArrayList<Station>();
 		
-		String sql = "select US.KOD_ST as kodst from USERS as U " +
+		String sql = "select US.KOD_ST, S.NAIM_ST, US.ACTIV_ST from USERS as U  " +
 					 "INNER JOIN USER_STATIONS as US on US.USER_ID = U.ID  " +
-				 	 "WHERE U.USERNAME like ?";
+					 "INNER JOIN STATION as S on S.KOD_ST = US.KOD_ST "+
+				 	 "WHERE U.USERNAME like ? AND US.ACTIV_ST = 0";
 	
-		try {
-			
-			Connection conn = dataSource.getConnection();
-			PreparedStatement ps = conn.prepareStatement(sql);
+		try(Connection conn = dataSource.getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);) 
+		{
 			ps.setString(1, name);
 			ResultSet rs = ps.executeQuery();
-			
 
 			while (rs.next())
 			{
-				listKodSt.add(rs.getString("kodst"));
+				listKodSt.add(new Station(rs.getString("KOD_ST"),
+										  rs.getString("NAIM_ST"),
+									  	  rs.getBoolean("ACTIV_ST")));
 			}
 			
 			rs.close();
-			ps.close();
-			conn.close();
-	
+
 		} catch (SQLException e) 
 		{
 			e.printStackTrace();

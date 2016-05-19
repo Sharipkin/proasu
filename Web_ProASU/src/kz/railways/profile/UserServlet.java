@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kz.railways.beans.UserServiceBeanLocal;
+import kz.railways.entities.Station;
 import kz.railways.entities.User;
 
 
@@ -24,12 +25,12 @@ public class UserServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 				
-		List<String> lk = userService.getStations(request.getRemoteUser());
+		List<Station> lk = userService.getStations(request.getRemoteUser());
 		
 		User user = (User) request.getSession().getAttribute("user");
 		
 		request.setAttribute("listkodst", lk);
-		request.setAttribute("activkodst", user.getKodSt());
+		request.setAttribute("activkodst", user.getStation().getKod());
 		
 		request.getRequestDispatcher("WEB-INF/pages/profile.jsp").forward(request, response);
 	}
