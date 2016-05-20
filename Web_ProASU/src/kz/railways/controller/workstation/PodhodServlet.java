@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kz.railaws.workstation.PodhodBeanLocal;
 import kz.railways.entities.Podhod;
 import kz.railways.entities.User;
+import kz.railways.workstation.PodhodBeanLocal;
 
 @WebServlet("/podhod")
 public class PodhodServlet extends HttpServlet {

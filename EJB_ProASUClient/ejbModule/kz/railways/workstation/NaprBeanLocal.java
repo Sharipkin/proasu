@@ -1,4 +1,4 @@
-package kz.railaws.workstation;
+package kz.railways.workstation;
 
 import java.util.List;
 import javax.ejb.Local;

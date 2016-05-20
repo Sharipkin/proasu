@@ -1,4 +1,4 @@
-package kz.railaws.workstation;
+package kz.railways.workstation;
 
 import java.util.List;
 
@@ -10,6 +10,6 @@ import kz.railways.entities.Podhod;
 public interface PodhodBeanLocal {
 	
 	public List<Podhod> showPodhod(String kodst);
-	public String test();
+	public void add(Podhod poezd);
 
 }

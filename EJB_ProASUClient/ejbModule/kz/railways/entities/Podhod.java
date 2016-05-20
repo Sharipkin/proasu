@@ -1,7 +1,8 @@
 package kz.railways.entities;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.List;
+import java.sql.Timestamp;
 
 public class Podhod implements Serializable{
 	
@@ -12,14 +13,111 @@ public class Podhod implements Serializable{
 	private String stForm;
 	private String nSost;
 	private String stNazn;
-	private Date dvOtpr;
+	private Timestamp dvOtpr;
 	private int uslDl;
 	private int kolVag;
 	private int vesPoezd;
-	private String negab;
+	private int negab;
 	
+	private int kodOp;
+	private String indPoezd;
+	private int prSpis;
+	private String marsh;
+	private int brutto;
+	private int netto;
+	private String nvagN;
+	private String nvagK;
+	private int prOhr;
+	private Timestamp dvOper;
+	private int prik;
+	private int givn;	
+	private String kodSt;
+	private List<Vagon> vagonList;
 	
-	
+	public List<Vagon> getVagonList() {
+		return vagonList;
+	}
+	public void setVagonList(List<Vagon> vagonList) {
+		this.vagonList = vagonList;
+	}
+	public String getKodSt() {
+		return kodSt;
+	}
+	public void setKodSt(String kodSt) {
+		this.kodSt = kodSt;
+	}
+	public int getGivn() {
+		return givn;
+	}
+	public void setGivn(int givn) {
+		this.givn = givn;
+	}
+	public int getPrik() {
+		return prik;
+	}
+	public void setPrik(int prik) {
+		this.prik = prik;
+	}
+	public int getKodOp() {
+		return kodOp;
+	}
+	public void setKodOp(int kodOp) {
+		this.kodOp = kodOp;
+	}
+	public String getIndPoezd() {
+		return indPoezd;
+	}
+	public void setIndPoezd(String indPoezd) {
+		this.indPoezd = indPoezd;
+	}
+	public int getPrSpis() {
+		return prSpis;
+	}
+	public void setPrSpis(int prSpis) {
+		this.prSpis = prSpis;
+	}
+	public String getMarsh() {
+		return marsh;
+	}
+	public void setMarsh(String marsh) {
+		this.marsh = marsh;
+	}
+	public int getBrutto() {
+		return brutto;
+	}
+	public void setBrutto(int brutto) {
+		this.brutto = brutto;
+	}
+	public int getNetto() {
+		return netto;
+	}
+	public void setNetto(int netto) {
+		this.netto = netto;
+	}
+	public String getNvagN() {
+		return nvagN;
+	}
+	public void setNvagN(String nvagN) {
+		this.nvagN = nvagN;
+	}
+	public String getNvagK() {
+		return nvagK;
+	}
+	public void setNvagK(String nvagK) {
+		this.nvagK = nvagK;
+	}
+	public int getPrOhr() {
+		return prOhr;
+	}
+	public void setPrOhr(int prOhr) {
+		this.prOhr = prOhr;
+	}
+	public Timestamp getDvOper() {
+		return dvOper;
+	}
+	public void setDvOper(Timestamp dvOper) {
+		this.dvOper = dvOper;
+	}
 	public String getStPer() {
 		return stPer;
 	}
@@ -50,10 +148,10 @@ public class Podhod implements Serializable{
 	public void setStNazn(String stNazn) {
 		this.stNazn = stNazn;
 	}
-	public Date getDvOtpr() {
+	public Timestamp getDvOtpr() {
 		return dvOtpr;
 	}
-	public void setDvOtpr(Date dvOtpr) {
+	public void setDvOtpr(Timestamp dvOtpr) {
 		this.dvOtpr = dvOtpr;
 	}
 	public int getUslDl() {
@@ -74,10 +172,10 @@ public class Podhod implements Serializable{
 	public void setVesPoezd(int vesPoezd) {
 		this.vesPoezd = vesPoezd;
 	}
-	public String getNegab() {
+	public int getNegab() {
 		return negab;
 	}
-	public void setNegab(String negab) {
+	public void setNegab(int negab) {
 		this.negab = negab;
 	}
 

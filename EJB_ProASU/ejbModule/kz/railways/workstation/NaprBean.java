@@ -1,4 +1,4 @@
-package kz.railaws.workstation;
+package kz.railways.workstation;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +13,7 @@ import javax.ejb.Stateless;
 import javax.sql.DataSource;
 
 import kz.railways.entities.Napr;
+import kz.railways.workstation.NaprBeanLocal;
 
 @Stateless
 @LocalBean

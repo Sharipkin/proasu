@@ -14,10 +14,10 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import kz.railaws.workstation.NaprBeanLocal;
 import kz.railways.beans.UserServiceBeanLocal;
 import kz.railways.entities.Napr;
 import kz.railways.entities.User;
+import kz.railways.workstation.NaprBeanLocal;
 
 
 @WebFilter("/*")
