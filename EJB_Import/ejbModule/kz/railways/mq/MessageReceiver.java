@@ -14,9 +14,9 @@ import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 
+import kz.railways.workstation.PodhodBeanLocal;
 import kz.railways.entities.Podhod;
 import kz.railways.entities.Vagon;
-import kz.railways.workstation.PodhodBeanLocal;
 
 @MessageDriven(mappedName = "jms/ImportQueue")
 public class MessageReceiver implements MessageListener {
@@ -57,44 +57,42 @@ public class MessageReceiver implements MessageListener {
 		calendar.setTime(new Date()); // Date date
 		int year = calendar.get(Calendar.YEAR);
 		String day, month, hour, minute;
-		int lineNum = 1;
 		String tmp;
 		
 		try(Scanner mess = new Scanner(m);){
 			Podhod podhod = new Podhod();
 			List<Vagon> vagList = new ArrayList<Vagon>();
-			while (mess.hasNext()){
-				if (lineNum == 1){
-					mess.next();
-					podhod.setKodOp(0);
-					podhod.setStPer(mess.next());
-					podhod.setnPoezd(mess.next());
-					podhod.setStForm(mess.next());
-					podhod.setnSost(mess.next());
-					podhod.setStNazn(mess.next());
-					podhod.setPrSpis(mess.nextInt());
-					day = mess.next();
-					month = mess.next();
-					hour = mess.next();
-					minute = mess.next();
-					podhod.setDvOtpr(Timestamp.valueOf(Integer.toString(year)+"-"+month+"-"+day+" "+hour+":"+minute+":00.000"));//"2016-01-19 14:01:00.000000"
-					podhod.setUslDl(mess.nextInt());
-					podhod.setBrutto(mess.nextInt());
-					podhod.setPrik(mess.nextInt());
-					podhod.setNegab(mess.nextInt());
-					podhod.setGivn(mess.nextInt());
-					podhod.setMarsh(mess.next());
-					podhod.setIndPoezd(podhod.getStForm()+podhod.getnSost()+podhod.getStNazn());
-					podhod.setKodSt("000000");
-					podhod.setKodOp(0);
-					podhod.setDvOper(podhod.getDvOtpr());
-					/*podhod.setKolVag(mess.nextInt());
-					podhod.setNvagN(mess.next());
-					podhod.setNvagK(mess.next());
-					podhod.setPrOhr(mess.nextInt());
-					podhod.setNetto(mess.nextInt());
-					list.add(podhod.getIndPoezd());*/
-				}else{
+			if (mess.next().equals("(:902")){
+				//mess.next();
+				podhod.setKodOp(0);
+				podhod.setStPer(mess.next());
+				podhod.setnPoezd(mess.next());
+				podhod.setStForm(mess.next());
+				podhod.setnSost(mess.next());
+				podhod.setStNazn(mess.next());
+				podhod.setPrSpis(mess.nextInt());
+				day = mess.next();
+				month = mess.next();
+				hour = mess.next();
+				minute = mess.next();
+				podhod.setDvOtpr(Timestamp.valueOf(Integer.toString(year)+"-"+month+"-"+day+" "+hour+":"+minute+":00.000"));//"2016-01-19 14:01:00.000000"
+				podhod.setUslDl(mess.nextInt());
+				podhod.setBrutto(mess.nextInt());
+				podhod.setPrik(mess.nextInt());
+				podhod.setNegab(mess.nextInt());
+				podhod.setGivn(mess.nextInt());
+				podhod.setMarsh(mess.next());
+				podhod.setIndPoezd(podhod.getStForm()+podhod.getnSost()+podhod.getStNazn());
+				podhod.setKodSt("000000");
+				podhod.setKodOp(0);
+				podhod.setDvOper(podhod.getDvOtpr());
+				/*podhod.setKolVag(mess.nextInt());
+				podhod.setNvagN(mess.next());
+				podhod.setNvagK(mess.next());
+				podhod.setPrOhr(mess.nextInt());
+				podhod.setNetto(mess.nextInt());
+				list.add(podhod.getIndPoezd());*/
+				while (mess.hasNext()){
 					if (!(tmp = mess.next()).equals(":)")){
 						Vagon vagon = new Vagon();
 						vagon.setNpp(Integer.parseInt(tmp));
@@ -121,10 +119,9 @@ public class MessageReceiver implements MessageListener {
 						vagList.add(vagon);
 					}
 				}
-				++lineNum;
-			}	
-			podhod.setVagonList(vagList);
-			podhodBean.add(podhod);
+				podhod.setVagonList(vagList);
+				podhodBean.add(podhod);
+			}
 			/*System.out.printf("KOD_OP = %d, ST_PER = %s, N_POEZD = %s, ST_FORM = %s, N_SOST = %s, "
 					+ "ST_NAZN = %s, PR_SPIS = %d, DV_OPER = %s, USL = %d, BRUTTO = %d, PRIK = %d, "
 					+ "NEGAB = %d, MARSH = %s, IND_POEZD = %s",podhod.getKodOp(), podhod.getStPer(),
