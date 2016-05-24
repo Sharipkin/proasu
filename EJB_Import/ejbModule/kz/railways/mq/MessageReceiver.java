@@ -15,7 +15,7 @@ import javax.jms.Message;
 import javax.jms.MessageListener;
 
 import kz.railways.workstation.PodhodBeanLocal;
-import kz.railways.entities.Podhod;
+import kz.railways.entities.Poezd;
 import kz.railways.entities.Vagon;
 
 @MessageDriven(mappedName = "jms/ImportQueue")
@@ -60,7 +60,7 @@ public class MessageReceiver implements MessageListener {
 		String tmp;
 		
 		try(Scanner mess = new Scanner(m);){
-			Podhod podhod = new Podhod();
+			Poezd podhod = new Poezd();
 			List<Vagon> vagList = new ArrayList<Vagon>();
 			if (mess.next().equals("(:902")){
 				//mess.next();

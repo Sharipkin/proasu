@@ -12,7 +12,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.sql.DataSource;
 
-import kz.railways.entities.Podhod;
+import kz.railways.entities.Poezd;
 import kz.railways.entities.Vagon;
 import kz.railways.workstation.PodhodBeanLocal;
 
@@ -24,11 +24,11 @@ public class PodhodBean implements PodhodBeanLocal {
     private DataSource dataSource;
 
 	@Override
-	public List<Podhod> showPodhod(String kodst) {
+	public List<Poezd> showPodhod(String kodst) {
 		
 		String sql = "select * from P_TEK where KOD_OP<2";
 		
-		List<Podhod> lp = new ArrayList<>();
+		List<Poezd> lp = new ArrayList<>();
 		
 		try (Connection conn = dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -36,7 +36,7 @@ public class PodhodBean implements PodhodBeanLocal {
 		{
 			while (rs.next())
 			{
-				Podhod poezd = new Podhod();
+				Poezd poezd = new Poezd();
 				poezd.setStPer(rs.getString("ST_PER"));
 				poezd.setStNazn(rs.getString("ST_NAZN"));
 				poezd.setStForm(rs.getString("ST_FORM"));
@@ -62,7 +62,7 @@ public class PodhodBean implements PodhodBeanLocal {
 	}
 
 	@Override
-	public void add(Podhod poezd) {
+	public void add(Poezd poezd) {
 		
 		String sql = "insert into P_TEK(IND_POEZD, GIVN, ST_PER, ST_FORM, N_SOST, ST_NAZN, P_SPIS, "
 				+ "MARSH, UDL, BRUTTO, NETTO, KVP, NVAG_N, NVAG_K, P_OHR, KOD_ST, KOD_OP, DV_OTPR, DV_OPER, N_POEZD) "

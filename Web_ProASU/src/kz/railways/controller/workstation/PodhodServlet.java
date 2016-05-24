@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kz.railways.entities.Podhod;
+import kz.railways.entities.Poezd;
 import kz.railways.entities.User;
 import kz.railways.workstation.PodhodBeanLocal;
 
@@ -25,7 +25,7 @@ public class PodhodServlet extends HttpServlet {
 
 		User user = (User) request.getSession().getAttribute("user");
 		
-		List<Podhod> lp = podhodBean.showPodhod(user.getStation().getKod());
+		List<Poezd> lp = podhodBean.showPodhod(user.getStation().getKod());
 		
 		/*for (Podhod p: lp)
 		{
