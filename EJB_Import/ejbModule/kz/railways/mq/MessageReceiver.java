@@ -76,7 +76,7 @@ public class MessageReceiver implements MessageListener {
 				hour = mess.next();
 				minute = mess.next();
 				podhod.setDvOtpr(Timestamp.valueOf(Integer.toString(year)+"-"+month+"-"+day+" "+hour+":"+minute+":00.000"));//"2016-01-19 14:01:00.000000"
-				podhod.setUslDl(mess.nextInt());
+				podhod.setUdl(mess.nextInt());
 				podhod.setBrutto(mess.nextInt());
 				podhod.setPrik(mess.nextInt());
 				podhod.setNegab(mess.nextInt());
@@ -102,7 +102,7 @@ public class MessageReceiver implements MessageListener {
 						vagon.setKodSob(tmp.substring(1,3)); 
 						vagon.setRolik(tmp.substring(3)); 
 						vagon.setVesGr(mess.nextInt()); 
-						vagon.setStNazn(mess.next()); 
+						vagon.setStNaznV(mess.next()); 
 						vagon.setKodGr(mess.next());
 						vagon.setGrPol(mess.next()); 
 						vagon.setMarsh(mess.next()); 

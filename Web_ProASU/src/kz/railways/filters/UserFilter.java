@@ -1,4 +1,4 @@
-package kz.raiways.filters;
+package kz.railways.filters;
 
 import java.io.IOException;
 import java.util.List;

@@ -26,28 +26,93 @@ public class PodhodBean implements PodhodBeanLocal {
 	@Override
 	public List<Poezd> showPodhod(String kodst) {
 		
-		String sql = "select * from P_TEK where KOD_OP<2";
+		String sql = "select ST_PER,N_POEZD,IND_POEZD,ST_FORM,N_SOST,ST_NAZN,PR_SPIS,DV_OTPR, "
+				+ "UDL,BRUTTO,PRIK,NEGAB,GIVN,MARSH,NETTO,KOL_VAG,NVAG_N,NVAG_K,KOL_OS,KOL_ROL,PR_OHR,"
+				+ "HAR_P,KOD_OP,DV_OPER,PR_DOST,KOD_ST,NBE"
+				+ " from P_TEK where KOD_OP<2";
+		
+		String sqlVagon = "select IND_POEZD, NPP, NVAG, QUAL, KOD_SOB, ROLIK, VESGR, "
+				+ "ST_NAZNV, KODGR, GRPOL, MARSH, PRIK, GIVN, KOL_PL, GR_KONT, "
+				+ "POR_KONT, ESR_VP, TARA_UT, PRIM, EDV, PR_ARND, PR_SOB "
+				+ "from P_VAG where IND_POEZD Like ?";
 		
 		List<Poezd> lp = new ArrayList<>();
 		
+		
 		try (Connection conn = dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
+			PreparedStatement psVag = conn.prepareStatement(sqlVagon);
 			ResultSet rs = ps.executeQuery();)	
 		{
 			while (rs.next())
 			{
 				Poezd poezd = new Poezd();
+				List<Vagon> lv = new ArrayList<>();
+				
+				
 				poezd.setStPer(rs.getString("ST_PER"));
-				poezd.setStNazn(rs.getString("ST_NAZN"));
+				poezd.setnPoezd(rs.getString("N_POEZD"));
+				poezd.setIndPoezd(rs.getString("IND_POEZD"));
 				poezd.setStForm(rs.getString("ST_FORM"));
 				poezd.setnSost(rs.getString("N_SOST"));
-				poezd.setnPoezd(rs.getString("N_POEZD"));
+				poezd.setStNazn(rs.getString("ST_NAZN"));
+				poezd.setPrSpis(rs.getInt("PR_SPIS"));
 				poezd.setDvOtpr(rs.getTimestamp("DV_OTPR"));
-				poezd.setUslDl(rs.getInt("UDL"));
-				poezd.setKolVag(rs.getInt("KVP"));
-				poezd.setVesPoezd(rs.getInt("BRUTTO"));
+				poezd.setUdl(rs.getInt("UDL"));
+				poezd.setBrutto(rs.getInt("BRUTTO"));
+				poezd.setPrik(rs.getInt("PRIK"));
 				poezd.setNegab(rs.getInt("NEGAB"));
+				poezd.setGivn(rs.getInt("GIVN"));
+				poezd.setMarsh(rs.getString("MARSH"));
+				poezd.setNetto(rs.getInt("NETTO"));
+				poezd.setKolVag(rs.getInt("KOL_VAG"));
+				poezd.setNvagN(rs.getString("NVAG_N"));
+				poezd.setNvagK(rs.getString("NVAG_K"));
+				poezd.setKolOs(rs.getInt("KOL_OS"));
+				poezd.setKolRol(rs.getInt("KOL_ROL"));
+				poezd.setPrOhr(rs.getInt("PR_OHR"));
+				poezd.setHarP(rs.getString("HAR_P"));
+				poezd.setKodOp(rs.getInt("KOD_OP"));
+				poezd.setDvOper(rs.getTimestamp("DV_OPER"));
+				poezd.setPrDost(rs.getInt("PR_DOST"));	
+				poezd.setKodSt(rs.getString("KOD_ST"));
+				poezd.setNbe(rs.getString("NBE"));
+								
+				psVag.setString(1, rs.getString("IND_POEZD"));
+				ResultSet rsVag = psVag.executeQuery();
+				while (rsVag.next())
+				{
+					
+					Vagon vag = new Vagon();
+										
+					vag.setIndPoezd(rsVag.getString("IND_POEZD"));
+					vag.setNpp(rsVag.getInt("NPP"));
+					vag.setnVag(rsVag.getString("NVAG"));
+					vag.setQual(rsVag.getString("QUAL"));
+					vag.setKodSob(rsVag.getString("KOD_SOB"));
+					vag.setRolik(rsVag.getString("ROLIK"));
+					vag.setVesGr(rsVag.getInt("VESGR"));
+					vag.setStNaznV(rsVag.getString("ST_NAZNV"));
+					vag.setKodGr(rsVag.getString("KODGR"));
+					vag.setGrPol(rsVag.getString("GRPOL"));
+					vag.setMarsh(rsVag.getString("MARSH"));
+					vag.setPrik(rsVag.getString("PRIK"));
+					vag.setGivn(rsVag.getString("GIVN"));
+					vag.setKolPl(rsVag.getInt("KOL_PL"));
+					vag.setGrKont(rsVag.getInt("GR_KONT"));
+					vag.setPorKont(rsVag.getInt("GR_KONT"));
+					vag.setEsrVp(rsVag.getString("ESR_VP"));
+					vag.setTaraUt(rsVag.getInt("TARA_UT"));
+					vag.setPrim(rsVag.getString("PRIM"));
+					vag.setEdv(rsVag.getInt("EDV"));
+					vag.setPrArnd(rsVag.getInt("PR_ARND"));
+					vag.setPrSob(rsVag.getInt("PR_SOB"));
+					
+					lv.add(vag);
+				}
+				rsVag.close();
 				
+				poezd.setVagonList(lv);
 				lp.add(poezd);
 				
 			}
@@ -80,7 +145,7 @@ public class PodhodBean implements PodhodBeanLocal {
 				ps.setString(6, poezd.getStNazn());
 				ps.setInt(7, poezd.getPrSpis());
 				ps.setString(8, poezd.getMarsh());
-				ps.setInt(9, poezd.getUslDl());
+				ps.setInt(9, poezd.getUdl());
 				ps.setInt(10, poezd.getBrutto());
 				ps.setInt(11, poezd.getNetto());
 				ps.setInt(12, poezd.getKolVag());
@@ -113,7 +178,7 @@ public class PodhodBean implements PodhodBeanLocal {
 					ps.setString(5, v.getKodSob());
 					ps.setString(6, v.getRolik());
 					ps.setInt(7, v.getVesGr());
-					ps.setString(8, v.getStNazn());
+					ps.setString(8, v.getStNaznV());
 					ps.setString(9, v.getGrPol());
 					ps.setString(10, v.getMarsh());
 					ps.setString(11, v.getPrik());

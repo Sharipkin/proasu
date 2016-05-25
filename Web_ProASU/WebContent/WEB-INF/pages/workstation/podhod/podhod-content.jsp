@@ -1,9 +1,14 @@
-<%@ page language="java" pageEncoding="UTF-8"%> 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix ="fmt" %>
-<table id="example2" class="table table-bordered table-hover context-menu-one dataTable">
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<jsp:useBean id="poezdList"
+	type="java.util.List<kz.railways.entities.Poezd>" scope="request" />
+
+<table id="example2"
+	class="table table-bordered table-hover context-menu-one dataTable">
 	<thead>
-           <tr class="info">
+		<tr class="info">
+			<th>Вагоны</th>
 			<th>Станция передачи</th>
 			<th>№ поезда</th>
 			<th>Станция формирования</th>
@@ -15,23 +20,43 @@
 			<th>Вес поезд.</th>
 			<th>Охр</th>
 			<th>Негаб.</th>
+
 		</tr>
 	</thead>
 	<tbody>
-			<c:forEach var="podhod" items="${podhodList }">
-				<tr>
-					<td>${podhod.getStPer() }</td>
-					<td>${podhod.getnPoezd() }</td>
-					<td>${podhod.getStForm() }</td>
-					<td>${podhod.getnSost() }</td>
-					<td>${podhod.getStNazn() }</td>
-					<td><fmt:formatDate value="${podhod.getDvOtpr() }" type="both" dateStyle ="short" timeStyle ="short"/></td>
-					<td>${podhod.getUslDl() }</td>
-					<td>${podhod.getKolVag() }</td>
-					<td>${podhod.getVesPoezd() }</td>
-					<td>-</td>
-					<td>${podhod.getNegab()}</td>
-				</tr>
-			</c:forEach>
+		<c:forEach var="p" items="${poezdList }">
+			<tr>
+				<td><a class="btn btn-primary" role="button"
+					data-toggle="collapse" href="#ind${p.indPoezd.trim() }"
+					aria-expanded="false" aria-controls="ind${p.indPoezd }"> вагоны
+				</a></td>
+				<td>${p.stPer }</td>
+				<td>${p.nPoezd }</td>
+				<td>${p.stForm }</td>
+				<td>${p.nSost }</td>
+				<td>${p.stNazn }</td>
+				<td><fmt:formatDate value="${p.dvOtpr }" type="both"
+						dateStyle="short" timeStyle="short" /></td>
+				<td>${p.udl }</td>
+				<td>${p.kolVag }</td>
+				<td>${p.brutto }</td>
+				<td>-</td>
+				<td>${p.negab}</td>
+
+			</tr>
+		</c:forEach>
 	</tbody>
 </table>
+
+<c:forEach var="p" items="${poezdList }">
+
+	<div class="collapse" id="ind${p.indPoezd.trim() }">
+		<div class="well">
+			<c:forEach var="vag" items="${p.vagonList }">
+				<c:out value="${vag.nVag }" />
+			</c:forEach>
+		</div>
+	</div>
+
+</c:forEach>
+

@@ -32,7 +32,7 @@ public class PodhodServlet extends HttpServlet {
 			response.getWriter().println(p.getStNazn()+ " " + p.getnPoezd() + " " + p.getStForm() + p.getDvOtpr() );
 		}*/
 		
-		request.setAttribute("podhodList", lp);
+		request.setAttribute("poezdList", lp);
 	
 		request.getRequestDispatcher("WEB-INF/pages/workstation/podhod/podhod-view.jsp").forward(request, response);
 		
