@@ -22,10 +22,17 @@ public class PodhodServlet extends HttpServlet {
 	PodhodBeanLocal podhodBean;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+ 
 		User user = (User) request.getSession().getAttribute("user");
+				
+		String napr = request.getParameter("napr");
 		
-		List<Poezd> lp = podhodBean.showPodhod(user.getStation().getKod());
+		if (napr == null)
+		{
+			napr = "%";
+		}
+		
+		List<Poezd> lp = podhodBean.showPodhod(napr, user.getStation().getKod());
 		
 		/*for (Podhod p: lp)
 		{
@@ -33,6 +40,7 @@ public class PodhodServlet extends HttpServlet {
 		}*/
 		
 		request.setAttribute("poezdList", lp);
+		request.setAttribute("naprNaim", "Направление");
 	
 		request.getRequestDispatcher("WEB-INF/pages/workstation/podhod/podhod-view.jsp").forward(request, response);
 		

@@ -24,12 +24,15 @@ public class PodhodBean implements PodhodBeanLocal {
     private DataSource dataSource;
 
 	@Override
-	public List<Poezd> showPodhod(String kodst) {
+	public List<Poezd> showPodhod(String napr, String kodst) {
 		
-		String sql = "select ST_PER,N_POEZD,IND_POEZD,ST_FORM,N_SOST,ST_NAZN,PR_SPIS,DV_OTPR, "
+		/*String sql = "select ST_PER,N_POEZD,IND_POEZD,ST_FORM,N_SOST,ST_NAZN,PR_SPIS,DV_OTPR, "
 				+ "UDL,BRUTTO,PRIK,NEGAB,GIVN,MARSH,NETTO,KOL_VAG,NVAG_N,NVAG_K,KOL_OS,KOL_ROL,PR_OHR,"
 				+ "HAR_P,KOD_OP,DV_OPER,PR_DOST,KOD_ST,NBE"
-				+ " from P_TEK where KOD_OP<2";
+				+ " from P_TEK where KOD_OP<2";*/
+		String sqlPodhod = "select ST_PER,N_POEZD,IND_POEZD,ST_FORM,N_SOST,ST_NAZN,DV_OTPR, "
+				+ "UDL,BRUTTO,PRIK,NEGAB,GIVN,MARSH,KOL_VAG,KOL_OS,KOL_ROL,PR_OHR"
+				+ " from TABLE(PODHOD(?, ?, ?))";
 		
 		String sqlVagon = "select IND_POEZD, NPP, NVAG, QUAL, KOD_SOB, ROLIK, VESGR, "
 				+ "ST_NAZNV, KODGR, GRPOL, MARSH, PRIK, GIVN, KOL_PL, GR_KONT, "
@@ -40,17 +43,41 @@ public class PodhodBean implements PodhodBeanLocal {
 		
 		
 		try (Connection conn = dataSource.getConnection();
-			PreparedStatement ps = conn.prepareStatement(sql);
+			PreparedStatement ps = conn.prepareStatement(sqlPodhod);
 			PreparedStatement psVag = conn.prepareStatement(sqlVagon);
-			ResultSet rs = ps.executeQuery();)	
+			)	
 		{
+			
+			ps.setString(1, napr);
+			ps.setString(2, kodst);
+			ps.setString(3, "%");
+			ResultSet rs = ps.executeQuery();
+			
 			while (rs.next())
 			{
 				Poezd poezd = new Poezd();
 				List<Vagon> lv = new ArrayList<>();
 				
-				
 				poezd.setStPer(rs.getString("ST_PER"));
+				poezd.setnPoezd(rs.getString("N_POEZD"));
+				poezd.setIndPoezd(rs.getString("IND_POEZD"));
+				poezd.setStForm(rs.getString("ST_FORM"));
+				poezd.setnSost(rs.getString("N_SOST"));
+				poezd.setStNazn(rs.getString("ST_NAZN"));
+				poezd.setDvOtpr(rs.getTimestamp("DV_OTPR"));
+				poezd.setUdl(rs.getInt("UDL"));
+				poezd.setBrutto(rs.getInt("BRUTTO"));
+				poezd.setPrik(rs.getInt("PRIK"));
+				poezd.setNegab(rs.getInt("NEGAB"));
+				poezd.setGivn(rs.getInt("GIVN"));
+				poezd.setMarsh(rs.getString("MARSH"));
+				poezd.setKolVag(rs.getInt("KOL_VAG"));
+				poezd.setKolOs(rs.getInt("KOL_OS"));
+				poezd.setKolRol(rs.getInt("KOL_ROL"));
+				poezd.setPrOhr(rs.getInt("PR_OHR"));
+			
+				
+				/*poezd.setStPer(rs.getString("ST_PER"));
 				poezd.setnPoezd(rs.getString("N_POEZD"));
 				poezd.setIndPoezd(rs.getString("IND_POEZD"));
 				poezd.setStForm(rs.getString("ST_FORM"));
@@ -76,7 +103,7 @@ public class PodhodBean implements PodhodBeanLocal {
 				poezd.setDvOper(rs.getTimestamp("DV_OPER"));
 				poezd.setPrDost(rs.getInt("PR_DOST"));	
 				poezd.setKodSt(rs.getString("KOD_ST"));
-				poezd.setNbe(rs.getString("NBE"));
+				poezd.setNbe(rs.getString("NBE"));*/
 								
 				psVag.setString(1, rs.getString("IND_POEZD"));
 				ResultSet rsVag = psVag.executeQuery();
@@ -117,6 +144,8 @@ public class PodhodBean implements PodhodBeanLocal {
 				
 			}
 			
+			rs.close();
+			
 		} catch (SQLException e) 
 		{
 			e.printStackTrace();
@@ -129,8 +158,8 @@ public class PodhodBean implements PodhodBeanLocal {
 	@Override
 	public void add(Poezd poezd) {
 		
-		String sql = "insert into P_TEK(IND_POEZD, GIVN, ST_PER, ST_FORM, N_SOST, ST_NAZN, P_SPIS, "
-				+ "MARSH, UDL, BRUTTO, NETTO, KVP, NVAG_N, NVAG_K, P_OHR, KOD_ST, KOD_OP, DV_OTPR, DV_OPER, N_POEZD) "
+		String sql = "insert into P_TEK(IND_POEZD, GIVN, ST_PER, ST_FORM, N_SOST, ST_NAZN, PR_SPIS, "
+				+ "MARSH, UDL, BRUTTO, NETTO, KOL_VAG, NVAG_N, NVAG_K, PR_OHR, KOD_ST, KOD_OP, DV_OTPR, DV_OPER, N_POEZD) "
 				+ "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try(Connection conn = dataSource.getConnection();)
 		{
@@ -164,7 +193,7 @@ public class PodhodBean implements PodhodBeanLocal {
 				e.printStackTrace();
 			}
 			
-			sql = "insert into P_VAG(IND_POEZD, NPP, NVAG, QUAL, KOD_SOB, ROLIK, VESGR, ST_NAZN, "
+			sql = "insert into P_VAG(IND_POEZD, NPP, NVAG, QUAL, KOD_SOB, ROLIK, VESGR, ST_NAZNV, "
 					+ "GRPOL, MARSH, PRIK, GIVN, KOL_PL, GR_KONT, POR_KONT, ESR_VP, TARA_UT, PRIM) "
 					+ "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			

@@ -1,3 +1,4 @@
+<%@page import="java.net.URLDecoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -80,41 +81,16 @@
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
-					${param.title} <small> </small>
+					
 				</h1>
 			</section>
 
 			<!-- Main content -->
 			<section class="content">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="box">
-							<div class="box-header">
-								<h3 class="box-title">Кандыагаш</h3>
-								
-                    <div class="box-tools pull-right">
-                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                  </div>
-                  
-							</div>
-							<!-- /.box-header -->
-							<div class="box-body">
-								<div class="table-responsive">
-									<jsp:include page="${param.content}.jsp" />
-								</div>
-								<!--table-responsive-->
-
-							</div>
-							<!-- /.box-body -->
-						</div>
-						<!-- /.box-->
-					</div>
-					<!-- /.col -->
+				<div class="row">	
+					<jsp:include page="${param.content}.jsp" />					
 				</div>
 				<!-- /.row -->
-
-
 			</section>
 			<!-- /.content -->
 
