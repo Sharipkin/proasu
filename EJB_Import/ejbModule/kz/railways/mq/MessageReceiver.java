@@ -1,5 +1,9 @@
 package kz.railways.mq;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -7,12 +11,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.ejb.MessageDriven;
 import javax.jms.BytesMessage;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
+import javax.sql.DataSource;
 
 import kz.railways.workstation.PodhodBeanLocal;
 import kz.railways.entities.Poezd;
@@ -23,6 +29,9 @@ public class MessageReceiver implements MessageListener {
 	
 	@EJB
 	PodhodBeanLocal podhodBean;
+	
+	@Resource(mappedName = "jdbc/DB2Asuss")
+    private DataSource dataSource;
 
     public void onMessage(Message message) {
         
@@ -65,10 +74,10 @@ public class MessageReceiver implements MessageListener {
 			if (mess.next().equals("(:902")){
 				//mess.next();
 				podhod.setKodOp(0);
-				podhod.setStPer(mess.next());
+				podhod.setStPer(String.format("%-5s", mess.next()).replace(' ', '0'));  //вставка 5го символа 0 справа
 				podhod.setnPoezd(mess.next());
 				podhod.setStForm(mess.next());
-				podhod.setnSost(mess.next());
+				podhod.setnSost(String.format("%03d", Integer.parseInt(mess.next()))); //вставка 3го символа 0 слева
 				podhod.setStNazn(mess.next());
 				podhod.setPrSpis(mess.nextInt());
 				day = mess.next();
@@ -82,10 +91,47 @@ public class MessageReceiver implements MessageListener {
 				podhod.setNegab(mess.nextInt());
 				podhod.setGivn(mess.nextInt());
 				podhod.setMarsh(mess.next());
-				podhod.setIndPoezd(podhod.getStForm()+podhod.getnSost()+podhod.getStNazn());
 				podhod.setKodSt("000000");
 				podhod.setKodOp(0);
 				podhod.setDvOper(podhod.getDvOtpr());
+				
+				String sql = "select KOD_ST from STAN where KOD_ST like ?"; // and LENGTH(RTRIM(LTRIM(KOD_ST))) = 6
+				
+				try (Connection conn = dataSource.getConnection();){
+						PreparedStatement ps;
+						ps = conn.prepareStatement(sql);
+						
+						ps.setString(1, podhod.getStPer()+"%");
+						ResultSet rs;
+						rs = ps.executeQuery();
+						while (rs.next()){
+							podhod.setStPer(rs.getString("KOD_ST"));
+						}	
+						rs.close();
+						ps.close();
+							
+						ps = conn.prepareStatement(sql);
+						ps.setString(1, podhod.getStForm()+"%");
+						rs = ps.executeQuery();
+						while (rs.next()){
+							podhod.setStForm(rs.getString("KOD_ST"));
+						}
+						rs.close();
+						ps.close();
+							
+						ps = conn.prepareStatement(sql);
+						ps.setString(1, podhod.getStNazn()+"%");
+						rs = ps.executeQuery();
+						while (rs.next()){
+							podhod.setStNazn(rs.getString("KOD_ST"));
+						}
+						rs.close();
+						ps.close();
+						
+						podhod.setIndPoezd(podhod.getStForm()+podhod.getnSost()+podhod.getStNazn());/**/
+				}catch(SQLException e){
+					e.printStackTrace();
+				}
 				/*podhod.setKolVag(mess.nextInt());
 				podhod.setNvagN(mess.next());
 				podhod.setNvagK(mess.next());
@@ -116,9 +162,12 @@ public class MessageReceiver implements MessageListener {
 						vagon.setTara(mess.nextDouble()); 
 						vagon.setPrim(mess.next());
 						vagon.setIndPoezd(podhod.getIndPoezd());
+						vagon.setTaraUt(0);
 						vagList.add(vagon);
 					}
 				}
+				podhod.setNvagN(vagList.get(0).getnVag());
+				podhod.setNvagK(vagList.get(vagList.size() - 1).getnVag());
 				podhod.setVagonList(vagList);
 				podhodBean.add(podhod);
 			}
