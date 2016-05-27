@@ -105,7 +105,7 @@
 
 	</div>
 
-	<jsp:include page="/WEB-INF/pages/workstation/prib/prib.html" />
+	<jsp:include page="/WEB-INF/pages/workstation/prib/prib.jsp" />
 
 	<!-- jQuery 2.1.4 -->
 	<script src="framework/plugins/jQuery/jQuery-2.1.4.min.js"></script>

@@ -6,7 +6,8 @@
 <div class="col-xs-12">
 	<div class="box">
 		<div class="box-header">
-			<h3 class="box-title">Подход</h3>
+			
+			<h3 class="box-title">${param.title }</h3>
 
 			<div class="box-tools pull-right">
 				<button class="btn btn-box-tool" data-widget="collapse">
