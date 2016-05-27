@@ -7,7 +7,7 @@
     <jsp:getProperty property="naprs" name="naim"/>
 </jsp:useBean>	
 
-<li class="treeview"><a href="#"><i class="fa fa-home"></i> <span>Подход</span>
+<li class="active treeview"><a href="#"><i class="fa fa-home"></i> <span>Подход</span>
 		<i class="fa fa-angle-left pull-right"></i></a>
 	<ul class="treeview-menu">
 		<li><a href="podhod">Все направления</a></li>
@@ -15,7 +15,7 @@
 		<li><c:out value="${napr.naim}" /></li>
 		
 		<c:forEach var="napr" items="${naprs }">
-			<li><a href="podhod?napr=${napr.kod }">${napr.kod } - ${napr.naim }</a></li>
+			<li <c:if test="${napr.kod == param.napr}">class="active"</c:if>><a href="podhod?napr=${napr.kod }">${napr.kod } - ${napr.naim }</a></li>
 		</c:forEach>
 
 	</ul></li>
