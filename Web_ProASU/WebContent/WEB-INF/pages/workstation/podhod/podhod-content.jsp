@@ -1,13 +1,24 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ page import="java.util.List"%>
 <jsp:useBean id="poezdList"
 	type="java.util.List<kz.railways.entities.Poezd>" scope="request" />
 <div class="col-xs-12">
 	<div class="box">
 		<div class="box-header">
-			
-			<h3 class="box-title">${param.title }</h3>
+
+			<h3 class="box-title">
+				<c:choose>
+					<c:when test="${naprNaim == null}">
+       				    Все направления
+    		    	</c:when>
+					<c:otherwise>
+       					Подход с направления: ${naprNaim } 
+   					</c:otherwise>
+				</c:choose>
+
+			</h3>
 
 			<div class="box-tools pull-right">
 				<button class="btn btn-box-tool" data-widget="collapse">
@@ -22,7 +33,7 @@
 		<!-- /.box-header -->
 		<div class="box-body">
 			<div class="table-responsive">
-				
+
 				<table id="example2"
 					class="table table-bordered table-hover context-menu-one dataTable">
 					<thead>

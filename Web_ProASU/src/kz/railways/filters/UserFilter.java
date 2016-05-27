@@ -31,8 +31,9 @@ public class UserFilter implements Filter {
 	
 	public void doFilter(ServletRequest req, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
-		response.setContentType("text/html; charset=UTF-8");
-		response.setCharacterEncoding("utf-8");
+		//response.setCharacterEncoding("utf-8");
+		//response.setContentType("text/html; charset=UTF-8");
+		
 				
 		HttpServletRequest request = (HttpServletRequest) req;
         String remoteUser = request.getRemoteUser();

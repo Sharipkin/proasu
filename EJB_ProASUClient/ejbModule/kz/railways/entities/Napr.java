@@ -12,6 +12,10 @@ public class Napr implements Serializable{
 	public int getKod() {
 		return kod;
 	}
+	public String getKodString() {
+		return String.valueOf(kod);
+	}
+	
 	public void setKod(int kod) {
 		this.kod = kod;
 	}

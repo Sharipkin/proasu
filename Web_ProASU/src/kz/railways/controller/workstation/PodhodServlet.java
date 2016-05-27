@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kz.railways.entities.Napr;
 import kz.railways.entities.Poezd;
 import kz.railways.entities.User;
 import kz.railways.workstation.PodhodBeanLocal;
@@ -40,7 +41,21 @@ public class PodhodServlet extends HttpServlet {
 		}*/
 		
 		request.setAttribute("poezdList", lp);
-		request.setAttribute("naprNaim", "Направление");
+		
+		List<Napr> ln = (List<Napr>) request.getSession().getAttribute("naprs");
+		
+		if (!napr.equals("%"))
+		{
+			for(Napr n:ln)
+			{
+				if(napr.equals(n.getKodString()))
+				{
+					request.setAttribute("naprNaim", n.getNaim());
+					break;
+				}
+			}
+		}
+		
 	
 		request.getRequestDispatcher("WEB-INF/pages/workstation/podhod/podhod-view.jsp").forward(request, response);
 		
