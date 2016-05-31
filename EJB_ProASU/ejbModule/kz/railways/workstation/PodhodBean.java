@@ -230,9 +230,22 @@ public class PodhodBean implements PodhodBeanLocal {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			
+			sql = "call WEBUSER.ZAP_SFRAZA(?,?,?,?)";
+			
+			try(PreparedStatement ps = conn.prepareStatement(sql);)
+			{	
+				ps.setString(1, poezd.getIndPoezd());
+				ps.setTimestamp(2, poezd.getDvOper());
+				ps.setInt(3, poezd.getKodOp());
+				ps.setInt(4, poezd.getPrDost());
+					
+				ps.executeUpdate();		
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-
 }

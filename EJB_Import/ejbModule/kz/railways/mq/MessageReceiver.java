@@ -38,23 +38,44 @@ public class MessageReceiver implements MessageListener {
     	BytesMessage bm = (BytesMessage) message;
     	    	
     	try {
-    		System.out.println("----------------RESEIVED MESSAGE---------------------");
     		byte[] data = new byte[(int) bm.getBodyLength()];
     		bm.readBytes(data);
     		String content = new String(data);
-    		try(Scanner mess = new Scanner(content);)
-    		{
-	    		while (mess.hasNext()){
-	        		switch (mess.next()){
-		        		case "(:902" : 	{parceMessage902(content);}
-		        			break;
-		        		}    
+    		//String path = "C:\\import_protocol.txt"; //new File("").getAbsolutePath() + "\\protocol.txt"; //- c:\Program Files\payara41\glassfish\domains\domain1\config\
+    		//try(FileWriter writer = new FileWriter(path, true))
+            //{
+    			String text = null;
+    			text = new Date().toString();
+    			//writer.write(text);
+    			//writer.append("\n");
+    			text = "----------------RESEIVED MESSAGE---------------------";
+    			System.out.println(text);
+    			//writer.write(text);
+    			//writer.append("\n");
+	    		try(Scanner mess = new Scanner(content);)
+	    		{
+		    		while (mess.hasNext()){
+		        		switch (mess.next()){
+			        		case "(:902" : 	{parceMessage902(content);}
+			        			break;
+			        		}    
+		    		}
+	    		} catch (Exception e) {
+	    			e.printStackTrace();
 	    		}
-    		} catch (Exception e) {
-    			e.printStackTrace();
-    		}
-			System.out.println(content);
-			System.out.println(" ----------------END---------------------");
+				System.out.println(content);
+				text = content; 
+				//writer.write(text);
+				//writer.append("\n");
+				text = "-----------------END---------------------";
+				System.out.println(text);
+				//writer.write(text);
+				//writer.append("\n");
+				//writer.flush();
+            /*}
+            catch(IOException e){
+                System.out.println(e.getMessage());
+            }*/
 		} catch (JMSException e) {
 			e.printStackTrace();
 		}
@@ -160,7 +181,11 @@ public class MessageReceiver implements MessageListener {
 						vagon.setPorKont(Integer.parseInt(tmp.substring(3,5)));
 						vagon.setEsrVp(mess.next()); 
 						vagon.setTara(mess.nextDouble()); 
-						vagon.setPrim(mess.next());
+						tmp = mess.next();
+						if (tmp.indexOf(":") > -1){
+							tmp = tmp.substring(0, tmp.indexOf(":"));
+						}
+						vagon.setPrim(tmp);
 						vagon.setIndPoezd(podhod.getIndPoezd());
 						vagon.setTaraUt(0);
 						vagList.add(vagon);
