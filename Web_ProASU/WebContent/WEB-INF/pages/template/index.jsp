@@ -145,17 +145,20 @@
     </script>
     
     <script>
-	$('#podhod tr').click(function() {
+	$('#podhod tr').not('#podhod tr.info').click(function() {
 		//alert('#'+$(this).attr('id'));
 		//alert($('#'+$(this).attr('id')+' div').attr('id'));
 		//$(this).css( "background-color","red");
-		$(this).addClass("selected").siblings().removeClass("selected");
+		//$(this).addClass("selected").siblings().removeClass("selected");
+		$(this).toggleClass("selected").siblings().removeClass("selected");
 		//$(this).hasClass("selected").removeClass("selected");
 		//$(this).removeClass("selected");
 		//$(this).toggleClass("selected");
+		//$(this).parent().children().removeClass("selected");
+        //$(this).addClass("selected");
+		//$('.collapse').not($('#d'+$(this).attr('id'))).collapse('hide');
 		$('.collapse').collapse('hide');
-		
-		$('#d'+$(this).attr('id')).collapse('toggle');
+		$('#d'+$(this).attr('id')).collapse('show');
 	});
 </script>
 

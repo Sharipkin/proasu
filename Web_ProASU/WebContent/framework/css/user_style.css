@@ -44,3 +44,7 @@ table.podhod tr:hover td {
   background:#ccddff;
 }
 
+.skin-blue .treeview-menu > li.active > a {
+    background-color: #3C8DBC;
+}
+
