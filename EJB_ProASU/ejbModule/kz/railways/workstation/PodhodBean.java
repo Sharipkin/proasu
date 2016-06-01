@@ -30,14 +30,14 @@ public class PodhodBean implements PodhodBeanLocal {
 				+ "UDL,BRUTTO,PRIK,NEGAB,GIVN,MARSH,NETTO,KOL_VAG,NVAG_N,NVAG_K,KOL_OS,KOL_ROL,PR_OHR,"
 				+ "HAR_P,KOD_OP,DV_OPER,PR_DOST,KOD_ST,NBE"
 				+ " from P_TEK where KOD_OP<2";*/
-		String sqlPodhod = "select ST_PER,N_POEZD,IND_POEZD,ST_FORM,N_SOST,ST_NAZN,DV_OTPR, "
+		String sqlPodhod = "select ST_PER,N_POEZD,IND_POEZD,ST_FORM,N_SOST,ST_NAZN,NAIM_ST_PER,DV_OTPR, "
 				+ "UDL,BRUTTO,PRIK,NEGAB,GIVN,MARSH,KOL_VAG,KOL_OS,KOL_ROL,PR_OHR"
 				+ " from TABLE(PODHOD(?, ?, ?))";
 		
 		String sqlVagon = "select IND_POEZD, NPP, NVAG, QUAL, KOD_SOB, ROLIK, VESGR, "
 				+ "ST_NAZNV, KODGR, GRPOL, MARSH, PRIK, GIVN, KOL_PL, GR_KONT, "
 				+ "POR_KONT, ESR_VP, TARA_UT, PRIM, EDV, PR_ARND, PR_SOB "
-				+ "from P_VAG where IND_POEZD Like ?";
+				+ "from P_VAG where IND_POEZD Like ? order by NPP";
 		
 		List<Poezd> lp = new ArrayList<>();
 		
@@ -64,6 +64,7 @@ public class PodhodBean implements PodhodBeanLocal {
 				poezd.setStForm(rs.getString("ST_FORM"));
 				poezd.setnSost(rs.getString("N_SOST"));
 				poezd.setStNazn(rs.getString("ST_NAZN"));
+				poezd.setNaimStPer(rs.getString("NAIM_ST_PER"));
 				poezd.setDvOtpr(rs.getTimestamp("DV_OTPR"));
 				poezd.setUdl(rs.getInt("UDL"));
 				poezd.setBrutto(rs.getInt("BRUTTO"));

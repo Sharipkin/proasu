@@ -48,6 +48,8 @@
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/framework/jQuery-contextMenu/jquery.contextMenu.css">
+	
+<link rel="stylesheet" href="${pageContext.request.contextPath }/framework/css/user_style.css">
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -138,7 +140,24 @@
         );
       });
     }); */
+    
+   
     </script>
+    
+    <script>
+	$('#podhod tr').click(function() {
+		//alert('#'+$(this).attr('id'));
+		//alert($('#'+$(this).attr('id')+' div').attr('id'));
+		//$(this).css( "background-color","red");
+		$(this).addClass("selected").siblings().removeClass("selected");
+		//$(this).hasClass("selected").removeClass("selected");
+		//$(this).removeClass("selected");
+		//$(this).toggleClass("selected");
+		$('.collapse').collapse('hide');
+		
+		$('#d'+$(this).attr('id')).collapse('toggle');
+	});
+</script>
 
 </body>
 

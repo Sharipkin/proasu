@@ -14,6 +14,7 @@ public class Poezd implements Serializable{
 	private String stForm;
 	private String nSost;
 	private String stNazn;
+	private String naimStPer;
 	private int prSpis;
 	private Timestamp dvOtpr;
 	private int udl;
@@ -72,6 +73,12 @@ public class Poezd implements Serializable{
 	}
 	public void setStNazn(String stNazn) {
 		this.stNazn = stNazn;
+	}
+	public String getNaimStPer() {
+		return naimStPer;
+	}
+	public void setNaimStPer(String naimStPer) {
+		this.naimStPer = naimStPer;
 	}
 	public int getPrSpis() {
 		return prSpis;
