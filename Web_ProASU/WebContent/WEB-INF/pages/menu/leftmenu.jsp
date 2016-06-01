@@ -6,11 +6,16 @@
     <jsp:getProperty property="naprs" name="kod"/>
     <jsp:getProperty property="naprs" name="naim"/>
 </jsp:useBean>	
+<% 
+	String uri = request.getRequestURI();
+	String pageName = uri.substring(uri.lastIndexOf("/")+1);
+	pageContext.setAttribute("pageName", pageName);
+%>
 
-<li class="active treeview"><a href="#"><i class="fa fa-home"></i> <span>Подход</span>
+<li class="treeview<c:if test="${pageName == 'podhod-view.jsp'}"> active</c:if>"><a href="#"><i class="fa fa-home"></i> <span>Подход</span>
 		<i class="fa fa-angle-left pull-right"></i></a>
 	<ul class="treeview-menu">
-		<li><a href="podhod">Все направления</a></li>
+		<li<c:if test="${empty param.napr}"> class="active"</c:if>><a href="podhod">Все направления</a></li>
 		
 		<li><c:out value="${napr.naim}" /></li>
 		

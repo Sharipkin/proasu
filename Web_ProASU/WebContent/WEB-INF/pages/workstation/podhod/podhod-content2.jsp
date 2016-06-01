@@ -35,7 +35,7 @@
 					<thead>
 						<tr class="info">
 							<th>№</th>
-							<th>Номер&nbsp;и&nbsp;индекс&nbsp;поезда</th>
+							<th colspan="2">Номер&nbsp;и&nbsp;индекс&nbsp;поезда</th>
 							<th>Откуда</th>
 							<th>Время&nbsp;отпр.&nbsp;&emsp;</th>
 							<th>Ваг</th>
@@ -53,8 +53,8 @@
 						<c:forEach var="p" items="${poezdList }" varStatus="status">
 							<tr id="ind${p.indPoezd.trim() }">
 								<td>${status.index + 1}</td>
-								<td>${p.nPoezd } ${p.stPer } ${p.nSost } ${p.stForm } <i
-									class="fa fa-train"></i></td>
+								<td><span>${p.nPoezd }</span></td>
+								<td><i class="fa fa-train"></i> ${p.stForm } ${p.nSost } ${p.stNazn }  </td>
 								<td>${p.naimStPer }</td>
 								<td><fmt:formatDate value="${p.dvOtpr }" type="both"
 										dateStyle="short" timeStyle="short" /></td>

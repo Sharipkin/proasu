@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <h2>Qwe ${param.title } </h2>
-    <h2>Qwe ${param.qwerty } </h2>
+<% String uri = request.getRequestURI();
+
+String pageName = uri.substring(uri.lastIndexOf("/")+1);
+out.print(pageName);
+%>

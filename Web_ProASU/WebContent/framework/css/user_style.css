@@ -2,6 +2,7 @@ table {
   border: 1px solid #69c; 
   -moz-user-select: none; /*запрет выделения для Mozilla*/
   -webkit-user-select: none; /*запрет выделения для Chrome, Safari*/
+  white-space: nowrap;
 }
 th {
   font-weight: normal;
@@ -27,6 +28,7 @@ tr.selected td {
 
 table.podhod {
   border: 1px solid #69c;
+  
 }
 table.podhod th {
   font-weight: normal;

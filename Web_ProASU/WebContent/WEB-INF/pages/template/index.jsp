@@ -145,6 +145,7 @@
     </script>
     
     <script>
+    $(document).ready(function () {
 	$('#podhod tr').not('#podhod tr.info').click(function() {
 		//alert('#'+$(this).attr('id'));
 		//alert($('#'+$(this).attr('id')+' div').attr('id'));
@@ -160,6 +161,7 @@
 		$('.collapse').collapse('hide');
 		$('#d'+$(this).attr('id')).collapse('show');
 	});
+    });
 </script>
 
 </body>
