@@ -56,8 +56,7 @@
 								<td><span>${p.nPoezd }</span></td>
 								<td><i class="fa fa-train"></i> ${p.stForm } ${p.nSost } ${p.stNazn }  </td>
 								<td>${p.naimStPer }</td>
-								<td><fmt:formatDate value="${p.dvOtpr }" type="both"
-										dateStyle="short" timeStyle="short" /></td>
+								<td><fmt:formatDate value="${p.dvOtpr }" pattern="dd.MM.yy hh:mm:ss" /></td>
 								<td>${p.kolVag }</td>
 								<td>${p.udl }</td>
 								<td>${p.brutto }</td>
