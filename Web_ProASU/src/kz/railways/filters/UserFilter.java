@@ -16,8 +16,11 @@ import javax.servlet.http.HttpSession;
 
 import kz.railways.beans.UserServiceBeanLocal;
 import kz.railways.entities.Napr;
+import kz.railways.entities.Park;
+import kz.railways.entities.Put;
 import kz.railways.entities.User;
 import kz.railways.workstation.NaprBeanLocal;
+import kz.railways.workstation.ParkiBeanLocal;
 
 
 @WebFilter("/*")
@@ -27,6 +30,8 @@ public class UserFilter implements Filter {
     private UserServiceBeanLocal userService;
 	@EJB
 	private NaprBeanLocal naprBean;
+	@EJB
+	private ParkiBeanLocal parkiBean;
 	
 	
 	public void doFilter(ServletRequest req, ServletResponse response, FilterChain chain) throws IOException, ServletException {
@@ -47,6 +52,15 @@ public class UserFilter implements Filter {
                 
                 List<Napr> naprs = naprBean.getNapr(user.getStation().getKod());        
                 session.setAttribute("naprs", naprs);    
+                
+                List<Park> parki1 = parkiBean.getPOPark(user.getStation().getKod(), 1);
+                session.setAttribute("parki1", parki1);
+                
+                List<Park> parki2 = parkiBean.getPOPark(user.getStation().getKod(), 2);                
+                session.setAttribute("parki2", parki2);
+                
+                List<Put> sortPark = parkiBean.getSortPark(user.getStation().getKod());
+                session.setAttribute("sortPark", sortPark);
 
             }
         }
