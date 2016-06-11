@@ -20,7 +20,7 @@ public class Poezd implements Serializable{
 	private int udl;
 	private int brutto;
 	private int prik;
-	private int negab;
+	private String negab;
 	private int givn;
 	private String marsh;
 	private int netto;
@@ -33,7 +33,10 @@ public class Poezd implements Serializable{
 	private String harP;
 	private int kodOp;
 	private Timestamp dvOper;
-	private int prDost;	
+	private int prDost;
+	private String mnkdOp;
+	private String sTgnl;
+	private int rabLok;
 	private String kodSt;
 	private String nbe;
 	private List<Vagon> vagonList;
@@ -110,10 +113,10 @@ public class Poezd implements Serializable{
 	public void setPrik(int prik) {
 		this.prik = prik;
 	}
-	public int getNegab() {
+	public String getNegab() {
 		return negab;
 	}
-	public void setNegab(int negab) {
+	public void setNegab(String negab) {
 		this.negab = negab;
 	}
 	public int getGivn() {
@@ -194,9 +197,28 @@ public class Poezd implements Serializable{
 	public void setPrDost(int prDost) {
 		this.prDost = prDost;
 	}
+	public String getMnkdOp() {
+		return mnkdOp;
+	}
+	public void setMnkdOp(String mnkdOp) {
+		this.mnkdOp = mnkdOp;
+	}
+	
+	public String getsTgnl() {
+		return sTgnl;
+	}
+	public void setsTgnl(String sTgnl) {
+		this.sTgnl = sTgnl;
+	}
+	public int getRabLok() {
+		return rabLok;
+	}
+	public void setRabLok(int rabLok) {
+		this.rabLok = rabLok;
+	}
 	public String getKodSt() {
 		return kodSt;
-	}
+	}	
 	public void setKodSt(String kodSt) {
 		this.kodSt = kodSt;
 	}
