@@ -69,7 +69,7 @@ public class PodhodBean implements PodhodBeanLocal {
 				poezd.setUdl(rs.getInt("UDL"));
 				poezd.setBrutto(rs.getInt("BRUTTO"));
 				poezd.setPrik(rs.getInt("PRIK"));
-				poezd.setNegab(rs.getInt("NEGAB"));
+				poezd.setNegab(rs.getString("NEGAB"));
 				poezd.setGivn(rs.getInt("GIVN"));
 				poezd.setMarsh(rs.getString("MARSH"));
 				poezd.setKolVag(rs.getInt("KOL_VAG"));
@@ -160,12 +160,14 @@ public class PodhodBean implements PodhodBeanLocal {
 	public void add(Poezd poezd) {
 		
 		String sql = "insert into P_TEK(IND_POEZD, GIVN, ST_PER, ST_FORM, N_SOST, ST_NAZN, PR_SPIS, "
-				+ "MARSH, UDL, BRUTTO, NETTO, KOL_VAG, NVAG_N, NVAG_K, PR_OHR, KOD_ST, KOD_OP, DV_OTPR, DV_OPER, N_POEZD) "
-				+ "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ "MARSH, UDL, BRUTTO, NETTO, KOL_VAG, NVAG_N, NVAG_K, PR_OHR, KOD_ST, KOD_OP, DV_OTPR, DV_OPER, N_POEZD, "
+				+ "HAR_P, NBE) "
+				+ "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try(Connection conn = dataSource.getConnection();)
 		{
-			try(PreparedStatement ps = conn.prepareStatement(sql);)
-			{			
+			try
+			{	
+				PreparedStatement ps = conn.prepareStatement(sql);
 				
 				ps.setString(1, poezd.getIndPoezd());
 				ps.setInt(2, poezd.getGivn());
@@ -187,19 +189,16 @@ public class PodhodBean implements PodhodBeanLocal {
 				ps.setTimestamp(18, poezd.getDvOtpr());
 				ps.setTimestamp(19, poezd.getDvOper());
 				ps.setString(20, poezd.getnPoezd());
+				ps.setString(21, poezd.getHarP());
+				ps.setString(22, poezd.getNbe());
 				ps.executeUpdate();
 				ps.close();
 				
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
 			
-			sql = "insert into P_VAG(IND_POEZD, NPP, NVAG, QUAL, KOD_SOB, ROLIK, VESGR, ST_NAZNV, "
-					+ "GRPOL, MARSH, PRIK, GIVN, KOL_PL, GR_KONT, POR_KONT, ESR_VP, TARA_UT, PRIM) "
-					+ "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-			
-			try(PreparedStatement ps = conn.prepareStatement(sql);)
-			{	
+				sql = "insert into P_VAG(IND_POEZD, NPP, NVAG, QUAL, KOD_SOB, ROLIK, VESGR, ST_NAZNV, "
+					+ "GRPOL, MARSH, PRIK, GIVN, KOL_PL, GR_KONT, POR_KONT, ESR_VP, TARA_UT, PRIM, KODGR) "
+					+ "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				ps = conn.prepareStatement(sql);
 				for (Vagon v : poezd.getVagonList()){
 					ps.setString(1, v.getIndPoezd());
 					ps.setInt(2, v.getNpp());
@@ -217,9 +216,9 @@ public class PodhodBean implements PodhodBeanLocal {
 					ps.setInt(14, v.getGrKont());
 					ps.setInt(15, v.getPorKont());
 					ps.setString(16, v.getEsrVp());
-					ps.setDouble(17, v.getTara());
+					ps.setDouble(17, v.getTaraUt());
 					ps.setString(18, v.getPrim());
-					
+					ps.setString(19, v.getKodGr());
 					ps.executeUpdate();
 					/*System.out.printf("NPP = %d, NVAG = %s, QUAL = %s, KOD_SOB = %s, ROLIK = %s, "
 					+ "VESGR = %d, ST_NAZN = %s, GR_POL = %s, MARSH = %s, PRIK = %s, GIVN = %s, "
@@ -227,23 +226,27 @@ public class PodhodBean implements PodhodBeanLocal {
 					v.getQual(), v.getKodSob(), v.getRolik(), v.getVesGr(), 
 					v.getStNazn(), v.getGrPol(), v.getMarsh(), v.getPrik(),
 					v.getPrik(), v.getKolPl(), v.getGrKont(), v.getPorKont(), v.getEsrVp(), v.getPrim());*/
-				}			
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+				}	
+				ps.close();
 			
-			sql = "call WEBUSER.ZAP_SFRAZA(?,?,?,?)";
-			
-			try(PreparedStatement ps = conn.prepareStatement(sql);)
-			{	
+				sql = "call WEBUSER.ZAP_SFRAZA(?,?,?,?)";
+				ps = conn.prepareStatement(sql);
 				ps.setString(1, poezd.getIndPoezd());
 				ps.setTimestamp(2, poezd.getDvOper());
 				ps.setInt(3, poezd.getKodOp());
 				ps.setInt(4, poezd.getPrDost());
 					
-				ps.executeUpdate();		
+				ps.executeUpdate();	
+				ps.close();
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
+				try{
+					 if(conn!=null)
+			            conn.rollback();
+			       }catch(SQLException se2){
+			    	   se2.printStackTrace();
+			       }
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
