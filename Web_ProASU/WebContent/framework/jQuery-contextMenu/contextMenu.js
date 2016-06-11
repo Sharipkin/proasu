@@ -1,7 +1,7 @@
 $(document).ready(function() {
   var tr_id = 0;
   $(function(){
-    $('#example2').contextMenu({
+    $('#podhodtableqwe').contextMenu({
       selector: 'tr',
       callback: function(key, options) {
         var tr = $(this).closest('tr').attr('id');
@@ -14,8 +14,10 @@ $(document).ready(function() {
             soob_prib: {name: "201 - СООБЩЕНИЕ О ПРИБЫТИИ",
             callback:
               function(key, options) {
-                var tr = $(this).closest('tr').attr('id');
-                $('#soob_prib').modal('show');
+                var indPoezd = $(this).closest('tr').attr('data-target');
+                $.get('pribmodal?indPoezd='+indPoezd, function(data) {
+					$('<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' + data + '</div>').modal();
+				}).success(function() { $('input:text:visible:first').focus(); });
               }
             },
             "soob_prosled": {"name": "202 - СООБЩЕНИЕ О ПРОСЛЕДОВАНИИ"

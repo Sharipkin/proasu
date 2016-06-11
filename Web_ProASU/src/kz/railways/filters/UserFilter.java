@@ -53,11 +53,8 @@ public class UserFilter implements Filter {
                 List<Napr> naprs = naprBean.getNapr(user.getStation().getKod());        
                 session.setAttribute("naprs", naprs);    
                 
-                List<Park> parki1 = parkiBean.getPOPark(user.getStation().getKod(), 1);
-                session.setAttribute("parki1", parki1);
-                
-                List<Park> parki2 = parkiBean.getPOPark(user.getStation().getKod(), 2);                
-                session.setAttribute("parki2", parki2);
+                List<Park> POPark = parkiBean.getPOPark(user.getStation().getKod());
+                session.setAttribute("POPark", POPark);
                 
                 List<Put> sortPark = parkiBean.getSortPark(user.getStation().getKod());
                 session.setAttribute("sortPark", sortPark);

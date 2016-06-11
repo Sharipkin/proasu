@@ -1,52 +1,84 @@
-table {
+table.podhod {
   border: 1px solid #69c; 
   -moz-user-select: none; /*запрет выделени€ дл€ Mozilla*/
   -webkit-user-select: none; /*запрет выделени€ дл€ Chrome, Safari*/
-  white-space: nowrap;
 }
-th {
+
+table.dataTable thead > tr > th {
+  padding-right: 10px;
+}
+
+table.podhod th  {
   font-weight: normal;
-  color: black;/*#039;*/
+  color: black;
   border: 1px dashed #69c;
-  padding: 7px 17px;
+  padding: 0px 10px;
   background: #C5C5C5;
-}
-td {
-  color: black;/*#669;*/
-  border: 1px dashed #69c;
-  padding: 3px 17px;
-}
-tr:hover td {
-  background:#ccddff;
-}
+  white-space: nowrap;/*убрать перенос*/
+  text-align: center;
 
-tr.selected td {
-  background:#ccddff;
-}
-
-
-
-table.podhod {
-  border: 1px solid #69c;
-  
-}
-table.podhod th {
-  font-weight: normal;
-  color: black;/*#039;*/
-  border: 1px dashed #69c;
-  padding: 7px 6px;
-  background: #F9FF9D
 }
 table.podhod td {
-  color: black;/*#669;*/
-  border: 1px dashed #69c; 
-  padding: 3px 6px;
+  color: black;
+  border: 1px dashed #69c;
+  padding: 0px 10px;
+  white-space: nowrap;/*убрать перенос*/
 }
 table.podhod tr:hover td {
   background:#ccddff;
 }
 
-.podhod .treeview-menu > li.active > a {
-    background-color: #3C8DBC;
+/*дл€ модального окна*/
+/*.modal-header {
+   padding: 7px;
+   text-align: center;
+} 
+  
+.form-control {
+   width: auto;
+   height: 25px;
+   padding: 1px 5px;
+   border: 2px solid #ccc;
+   border-radius: 1;
+}   
+
+.modal-lg {
+	width: 770px;
 }
 
+.modal-content {
+	background-color: #C5C5C5; 
+}*/
+
+.pribitie {
+	font-size: 12px;	
+}  
+/*
+.panel-primary {
+	border: 3px solid transparent;
+	border-color: #337ab7;
+}
+*/
+/*table.podhod {
+  border: 1px solid #69c;
+}
+table.podhod th {
+  font-weight: normal;
+  color: black;
+  border: 1px dashed #69c;
+  padding: 7px 6px;
+  background: #F9FF9D
+}
+table.podhod td {
+  color: black;
+  border: 1px dashed #69c; 
+  padding: 1px 6px;
+}
+table.podhod tr:hover td {
+  background:#ccddff;
+}*/
+
+
+.skin-blue-light .treeview-menu > li.active > a {
+    background-color: #ccddff;
+}

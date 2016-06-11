@@ -19,19 +19,16 @@
 				</c:choose>
 			</h3>
 			<div class="box-tools pull-right">
-				<button class="btn btn-box-tool" data-widget="collapse">
-					<i class="fa fa-minus"></i>
-				</button>
-				<button class="btn btn-box-tool" data-widget="remove">
-					<i class="fa fa-times"></i>
-				</button>
-			</div>
+                      <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Свернуть"><i class="fa fa-minus"></i></button>
+                      <!--button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Удалить"><i class="fa fa-times"></i></button-->
+                      <button class="btn btn-box-tool" data-widget="print" data-toggle="tooltip" title="Печать"><i class="fa fa-print"></i></button>
+                    </div>
 		</div>
 		<!-- /.box-header -->
 		<div class="box-body">
 			<div class="table-responsive">
 				<!--table id="example2" class="table table-bordered table-hover context-menu-one dataTable"-->
-				<table id="podhod" class="context-menu-one dataTable">
+				<table id="podhod" class="podhod context-menu-one dataTable">
 					<thead>
 						<tr class="info">
 							<th>№</th>
@@ -47,16 +44,18 @@
 							<th>М</th>
 							<th>ПР</th>
 							<th>Охр</th>
+							<th>действия</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach var="p" items="${poezdList }" varStatus="status">
-							<tr id="ind${p.indPoezd.trim() }">
+							<tr id="ind${p.indPoezd.trim() }" data-target="${p.indPoezd.trim() }">
 								<td>${status.index + 1}</td>
 								<td><span>${p.nPoezd }</span></td>
 								<td><i class="fa fa-train"></i> ${p.stForm } ${p.nSost } ${p.stNazn }  </td>
 								<td>${p.naimStPer }</td>
-								<td><fmt:formatDate value="${p.dvOtpr }" pattern="dd.MM.yy hh:mm:ss" /></td>
+								<td><fmt:formatDate value="${p.dvOtpr }" pattern="dd.MM.yy hh:mm:ss" />
+								</td>
 								<td>${p.kolVag }</td>
 								<td>${p.udl }</td>
 								<td>${p.brutto }</td>
@@ -66,6 +65,13 @@
 								<td>${p.marsh }</td>
 								<td>${p.prik }</td>
 								<td>${p.prOhr }</td>
+								<td><a data-toggle="modal" href="pribmodal?indPoezd=${p.indPoezd.trim() }" data-target="#soob_prib">
+								     <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></a>
+								<a href="prib?indPoezd=${p.indPoezd.trim() }">
+								     <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></a>   
+								     
+								     
+								     </td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -73,7 +79,6 @@
 
 			</div>
 			<!--table-responsive-->
-
 		</div>
 		<!-- /.box-body -->
 
@@ -110,7 +115,7 @@
 								<th>вес</th>
 								<th>назн</th>
 								<th>груз</th>
-								<th>клиент</th>
+								<th>получ</th>
 								<th>м</th>
 								<th>п</th>
 								<th>ж</th>
@@ -120,7 +125,7 @@
 								<th>КВП</th>
 								<th>УВТ</th>
 								<th>примеч</th>
-								<th>Аренда(собств)</th>
+								
 							</tr>
 						</thead>
 						<tbody>
@@ -143,7 +148,6 @@
 									<td>${vag.esrVp }</td>
 									<td>${vag.taraUt }</td>
 									<td>${vag.prim }</td>
-									<td>Аренда</td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -161,6 +165,6 @@
 	<!-- /.col -->
 
 </c:forEach>
-
+	
 
 

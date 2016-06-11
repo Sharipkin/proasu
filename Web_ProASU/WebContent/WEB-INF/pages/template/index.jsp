@@ -51,6 +51,10 @@
 	
 <link rel="stylesheet" href="${pageContext.request.contextPath }/framework/css/user_style.css">
 
+<link rel="stylesheet" href="${pageContext.request.contextPath }/framework/plugins/datetimepicker/css/bootstrap-datetimepicker.css">
+
+<link rel="stylesheet" href="${pageContext.request.contextPath }/framework/css/print.css" media="print" />
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<!--Шапка и меню-->
@@ -90,24 +94,30 @@
 			<!-- Main content -->
 			<section class="content">
 				<div class="row">	
-					<jsp:include page="${param.content}.jsp" />					
+					<jsp:include page="${param.content}.jsp" />				
 				</div>
 				<!-- /.row -->
 			</section>
 			<!-- /.content -->
 
 			<!-- Your Page Content Here -->
-
 		</div>
 		<!-- /.content-wrapper -->
 		<!-- Main Footer -->
 		<jsp:include page="/WEB-INF/pages/template/footer.jsp" />
 		<!-- Control Sidebar -->
 		<jsp:include page="/WEB-INF/pages/menu/controlsidebar.jsp" />
+		
+		
+		
+	
+		
+		
 
 	</div>
 
-	<jsp:include page="/WEB-INF/pages/workstation/prib/prib.jsp" />
+
+	<!-- jsp:include page="/WEB-INF/pages/workstation/prib/prib.jsp" /-->
 
 	<!-- jQuery 2.1.4 -->
 	<script src="framework/plugins/jQuery/jQuery-2.1.4.min.js"></script>
@@ -116,9 +126,15 @@
 	<!-- AdminLTE App -->
 	<script src="framework/dist/js/app.min.js"></script>
 
-	<!-- jQuery-contextMenu -->
+	<!-- jQuery-contextMenu 
 	<script src="framework/jQuery-contextMenu/jquery.contextMenu.js"></script>
-	<script src="framework/jQuery-contextMenu/contextMenu.js"></script>
+	<script src="framework/jQuery-contextMenu/contextMenu.js"></script>   -->
+	
+	<script src="framework/plugins/datetimepicker/js/moment-with-locales.js"></script>
+	<script src="framework/plugins/datetimepicker/js/bootstrap-datetimepicker.js"></script> 
+	
+	<script type="text/javascript" src="framework/js/parki.js"></script>
+	
 
 
 	<script>
@@ -162,6 +178,42 @@
 		$('#d'+$(this).attr('id')).collapse('show');
 	});
     });
+    
+    $(document).ready(function() {
+    	
+    	// Support for AJAX loaded modal window.
+    	// Focuses on first input textbox after it loads the window.
+		$('[data-toggle="modal"]').click(function(e) {
+			$('.modal').remove();
+			e.stopPropagation();
+			e.preventDefault();
+			var url = $(this).attr('href');
+			if (url.indexOf('#') == 0) {	
+				$(url).modal()
+			} else {
+				$.get(url, function(data) {
+					$('<div class="modal fade" id="myModal">' + data + '</div>').modal();
+				}).fail(function() {
+				    alert( "error" );
+				  }).success(function() { $('input:text:visible:first').focus(); });
+			}
+		});
+
+    	
+    	  /*$('[data-toggle="modal"]').click(function(e) {
+    		  $('.modal').remove();
+    		  e.stopPropagation();
+    		  e.preventDefault();
+    		  var url = $(this).attr('href');
+    		  //var modal_id = $(this).attr('data-target');
+    		  $.get(url, function(data) {
+    		      $(data).modal();
+    		  });
+    		});*/
+    		
+    	});
+    
+    
 </script>
 
 </body>

@@ -1,0 +1,92 @@
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">201 - ПРИБЫТИЕ</h4>
+        <h5 class="modal-title" id="myModalLabel"><font color="#337ab7"><b>Станция прибытия поезда</b> - 660007 Кандыагаш</font></h5>
+      </div>
+      <div class="modal-body pribitie">
+      <div class="panel panel-primary">
+        <div class="panel-body">
+          <div class="form-group">
+            <label for="nom_poezd" class="col-sm-2 control-label">Номер поезда</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="nom_poezd" value="3474" size="3">
+            </div>
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="index_poezd1" class="col-sm-2 control-label">Индекс поезда</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="index_poezd1" value="6686" size="3">
+            </div>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" id="index_poezd2" value="040" size="2">
+            </div>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" id="index_poezd3" value="6600" size="3">
+            </div>
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="naprav_prib" class="col-sm-2 control-label">Направление&nbsp;прибытия</label>
+            <div class="col-sm-5">
+              <select class="form-control" id="napravlenie">
+                <option>668600-Никельтау</option>
+                <option>661212-Жем</option>
+              </select>
+            </div>
+          </div>
+          <br>
+        <div class="form-group">
+            <label for="date" class="col-sm-2 control-label">Дата</label>
+            <div class="col-sm-4">
+              <input type="date" class="form-control" id="date" value="2016-01-01">
+            </div>
+            <label for="time" class="col-sm-2 control-label">Время</label>
+            <div class="col-sm-4">
+              <input type="time" class="form-control timepicker" id="time" value="10:00">
+            </div>      
+                   <div class="bootstrap-timepicker">
+                    <div class="form-group">
+                      <label>Time picker:</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control timepicker">
+                        <div class="input-group-addon">
+                          <i class="fa fa-clock-o"></i>
+                        </div>
+                      </div><!-- /.input group -->
+                    </div><!-- /.form group -->
+                  </div>
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="park" class="col-sm-2 control-label">Парк</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="park" value="0">
+            </div>
+            <label for="put" class="col-sm-2 control-label">Путь</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="put" value="0">
+            </div>
+          </div>
+           <br>
+          <div class="form-group">
+            <label for="rabota_s_lol" class="col-sm-2 control-label">Работа&nbsp;с&nbsp;локомотивом</label>
+            <div class="col-sm-4">
+              <select class="form-control" id="rabota_s_lol">
+                <option>работы нет</option>
+                <option>отцепка локомотива</option>
+                <option>смена бригад</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+        <button type="button" class="btn btn-primary" id="soob_otpr_save">Принять</button>
+      </div>
+    </div>
+  </div>
