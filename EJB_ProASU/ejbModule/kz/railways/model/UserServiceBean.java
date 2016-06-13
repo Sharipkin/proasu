@@ -28,7 +28,7 @@ public class UserServiceBean implements UserServiceBeanLocal {
 		
 		User user = new User();
 		
-		String sql = "select U.USERNAME as username, US.KOD_ST as kodst, S.NAIM_ST as naimst from USERS as U " +
+		String sql = "select U.USERNAME as username, US.KOD_ST as kodst, S.NAIM_ST as naimst, S.KOD_S as kods  from USERS as U " +
 					 "INNER JOIN USER_STATIONS as US on US.USER_ID = U.ID  " +
 				     "INNER JOIN STATION as S on S.KOD_ST = US.KOD_ST " + 
 					 "WHERE US.ACTIV_ST = 1 AND U.USERNAME like ?";
@@ -43,7 +43,7 @@ public class UserServiceBean implements UserServiceBeanLocal {
 			while (rs.next())
 			{
 				user.setName(rs.getString("username"));
-				user.setStation(new Station(rs.getString("kodst"), rs.getString("naimst"), true));
+				user.setStation(new Station(rs.getString("kodst"), rs.getString("naimst"), rs.getInt("kods"), true));
 			}
 			
 			rs.close();
@@ -66,7 +66,7 @@ public class UserServiceBean implements UserServiceBeanLocal {
 	public List<Station> getStations(String name) {
 		List<Station> listKodSt = new ArrayList<Station>();
 		
-		String sql = "select US.KOD_ST, S.NAIM_ST, US.ACTIV_ST from USERS as U  " +
+		String sql = "select US.KOD_ST, S.NAIM_ST, S.KOD_S, US.ACTIV_ST from USERS as U  " +
 					 "INNER JOIN USER_STATIONS as US on US.USER_ID = U.ID  " +
 					 "INNER JOIN STATION as S on S.KOD_ST = US.KOD_ST "+
 				 	 "WHERE U.USERNAME like ? AND US.ACTIV_ST = 0";
@@ -80,8 +80,9 @@ public class UserServiceBean implements UserServiceBeanLocal {
 			while (rs.next())
 			{
 				listKodSt.add(new Station(rs.getString("KOD_ST"),
-										  rs.getString("NAIM_ST"),
-									  	  rs.getBoolean("ACTIV_ST")));
+						  rs.getString("NAIM_ST"),
+						  rs.getInt("KOD_S"),
+					  	  rs.getBoolean("ACTIV_ST")));
 			}
 			
 			rs.close();

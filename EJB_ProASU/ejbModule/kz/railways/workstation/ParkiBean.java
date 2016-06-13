@@ -32,7 +32,7 @@ public class ParkiBean implements ParkiBeanLocal {
      */
 	@Override
 	public List<Park> getPOPark(String kodst){
-		String sql = "SELECT * FROM STATION_PARK WHERE TIP_PARK <> 4 AND TIP_PARK<>2 AND KOD_ST = ? ORDER BY NPP, N_PARK";
+		String sql = "SELECT N_PARK, NAIM_PARK, KOD_S FROM STATION_PARK WHERE TIP_PARK<>2 AND KOD_ST = ? ORDER BY NPP, N_PARK";
 		
 		List<Park> lp = new ArrayList<>();
 		
@@ -127,6 +127,7 @@ public class ParkiBean implements ParkiBeanLocal {
 		
 		return lpPut;
 	}
+	
 	@Override
 	public List<Put> getSortPark(String kodst){
 		String sql = "SELECT * FROM STATION_PARKPUT where N_PARK = 3 and KOD_ST = ?";
@@ -152,46 +153,5 @@ public class ParkiBean implements ParkiBeanLocal {
 		}
 		
 		return lp;		
-	}
-	
-	@Override
-	public Boolean hasRecPTek(String indP){
-		String sql = "SELECT count(*) as rowCount FROM P_TEK WHERE IND_POEZD = ?";
-		
-		try (Connection conn = dataSource.getConnection();
-			PreparedStatement ps = conn.prepareStatement(sql);)
-		{
-			ps.setString(1, indP);
-			ResultSet rs = ps.executeQuery();
-			if (rs.getInt("rowCount")==0)
-				return false;
-			else
-				return true;			
-		}catch(SQLException e){
-			e.printStackTrace();
-			return null;
-		}		
-	}
-	
-	
-	@Override
-	public Boolean hasRecPPOP(String park, String put, String kodst){
-		String sql = "SELECT * FROM P_POP WHERE KOD_ST = ? AND N_PARK = ? AND N_PUT = ?";
-		
-		try (Connection conn = dataSource.getConnection();
-			PreparedStatement ps = conn.prepareStatement(sql);)
-		{
-			ps.setString(1, kodst);
-			ps.setString(2, park);
-			ps.setString(3, put);
-			ResultSet rs = ps.executeQuery();
-			if (rs.getString("IND_POEZD").equals(""))
-				return false;
-			else
-				return true;			
-		}catch(SQLException e){
-			e.printStackTrace();
-			return null;
-		}
 	}
 }

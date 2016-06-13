@@ -152,7 +152,7 @@ public class PribBean implements PribBeanLocal {
 	{
 		String sql = "INSERT INTO P_POP(IND_POEZD, N_PARK, N_PUT, ST_FORM, N_SOST, ST_NAZN, N_POEZD,"
 			    	+ "MNKD_OP, PR_TR, S_TGNL, PR_RASF, DV_OPER, HAR_P, KOL_OS, KOL_ROL, RAB_LOK, KOD_ST) "
-			    	+"VALUES(?, ?, ?, ?, ?, ?, ?, ?, 0, '', 0, ?, '', ?, ?, 0, ?)";
+			    	+"VALUES(?, ?, ?, ?, ?, ?, ?, ?, 0, '+', 0, ?, '', ?, ?, 0, ?)";
 		
 		try(PreparedStatement ps = this.conn.prepareStatement(sql);)
 		{
