@@ -9,12 +9,17 @@ public class Station  implements Serializable{
 	private String kod;
 	private String naim;
 	private Boolean active;
+	private int kodS;
 	
-	public Station(String kod, String naim, Boolean active) {
+	public Station(){
+	}	
+	
+	public Station(String kod, String naim, int kodS, Boolean active) {
 		super();
 		this.kod = kod;
 		this.naim = naim;
-		this.active = active;
+		this.kodS = kodS;
+		this.active = active;		 
 	}
 	public Boolean getActive() {
 		return active;
@@ -33,6 +38,13 @@ public class Station  implements Serializable{
 	}
 	public void setNaim(String naim) {
 		this.naim = naim;
+	}
+	
+	public int getKodS() {
+		return kodS;
+	}
+	public void setKodS(int kodS) {
+		this.kodS = kodS;
 	}
 
 }
