@@ -1,4 +1,4 @@
-package kz.railways.controller.workstation;
+package kz.railways.controller.workstation.prib;
 
 import java.io.IOException;
 import java.sql.Timestamp;

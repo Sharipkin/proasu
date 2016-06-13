@@ -1,4 +1,4 @@
-package kz.railways.controller.workstation;
+package kz.railways.controller.workstation.prib;
 
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -25,9 +25,7 @@ public class PribModalServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String indPoezd = request.getParameter("indPoezd");
-		
-		System.out.println("ind - " + indPoezd);
-		
+				
 		if (indPoezd == null)
 		{	
 			response.sendError(HttpServletResponse.SC_NOT_FOUND);
@@ -40,7 +38,8 @@ public class PribModalServlet extends HttpServlet {
 				Poezd poezd = pribBean.getPoezd();
 				request.setAttribute("poezd", poezd);
 				
-				request.getRequestDispatcher("WEB-INF/pages/workstation/prib/prib.jsp").forward(request, response);
+				//request.getRequestDispatcher("WEB-INF/pages/workstation/prib/prib.jsp").forward(request, response);
+				request.getRequestDispatcher("WEB-INF/pages/workstation/prib/pribmodal.jsp").forward(request, response);
 			}
 			else
 			{
@@ -64,6 +63,7 @@ public class PribModalServlet extends HttpServlet {
 		
 		if (pribBean.prib(nPoezd,user.getStation().getKod(),dvOper,nPark,nPut) > 0)
 		{
+			request.getSession().setAttribute("POPark", null);
 			response.sendRedirect("park?park="+nPark+"&put="+nPut);
 		}
 		else

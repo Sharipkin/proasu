@@ -13,17 +13,17 @@ $(document).ready(function () {
 	
 	var data = parseUrlQuery();			
 		if (data.hasOwnProperty('park')) {		
-			//alert(data['park']);
-//			var firstBtn = $("ul.sidebar-menu > li.treeview:last > a"); 
-//			firstBtn.click();
-//			var secBtn = $("ul.sidebar-menu > li.treeview:last > ul.treeview-menu > li.kodS"+data['kodS']+ ' > a');			
-//			secBtn.click();
-//			var thirdBtn = $("ul.sidebar-menu > li.treeview:last > ul.treeview-menu > li.kodS"+data['kodS']+ ' ul.treeview-menu > li#park'+data['park']+' > a');
-//			thirdBtn.click();
-//			$("ul.sidebar-menu > li.treeview:last > ul.treeview-menu > li.kodS"+data['kodS']+ ' ul.treeview-menu > li#park'+data['park']+' ul.treeview-menu > li#put'+data['put']+ ' > a').css('color', 'red');
 			$("ul.sidebar-menu > li.treeview:last").addClass('active');
-			$("ul.sidebar-menu > li.treeview:last > ul.treeview-menu > li.kodS"+data['kodS']).addClass('active');
-			$("ul.sidebar-menu > li.treeview:last > ul.treeview-menu > li.kodS"+data['kodS']+ ' ul.treeview-menu > li#park'+data['park']).addClass('active');
-			$("ul.sidebar-menu > li.treeview:last > ul.treeview-menu > li.kodS"+data['kodS']+ ' ul.treeview-menu > li#park'+data['park']+' ul.treeview-menu > li#put'+data['put']+ ' > a').css('color', 'red');
-		}	
+			//$("ul.sidebar-menu > li.treeview:last > ul.treeview-menu > li.kodS"+data['kodS']).addClass('active');
+			$("ul.sidebar-menu > li.treeview:last > ul.treeview-menu > li#park"+data['park']).addClass('active');
+			$("ul.sidebar-menu > li.treeview:last > ul.treeview-menu > li#park"+data['park']+' ul.treeview-menu > li#put'+data['put']+ ' > a').css('color', 'red');
+		}
+		
+	$("qwea").click(function(){
+		var put = $(this).parent("li").attr("id");
+		if (put.substring(0,3)=='put'){
+			$(".content").empty();
+			$("ul.sidebar-menu > li.treeview:last > ul.treeview-menu > li > ul.treeview-menu > li > a").css('color', '#8aa4af');
+		}
+	});
 });

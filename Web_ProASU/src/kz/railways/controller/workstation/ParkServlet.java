@@ -17,26 +17,12 @@ import kz.railways.workstation.ParkiBeanLocal;
 
 
 
-/**
- * Servlet implementation class ParkServlet
- */
 @WebServlet("/park")
 public class ParkServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-	@EJB
-	ParkiBeanLocal parkiBean;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		
+	
 		String npark = request.getParameter("park");
 		String nput = request.getParameter("put");
 
@@ -57,9 +43,6 @@ public class ParkServlet extends HttpServlet {
 		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

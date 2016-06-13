@@ -28,9 +28,9 @@
 		<div class="box-body">
 			<div class="table-responsive">
 				<!--table id="example2" class="table table-bordered table-hover context-menu-one dataTable"-->
-				<table id="podhod" class="podhod context-menu-one dataTable">
+				<table id="podhod" class="table table-bordered table-hover table-condensed">
 					<thead>
-						<tr class="info">
+						<tr class="blue">
 							<th>№</th>
 							<th colspan="2">Номер&nbsp;и&nbsp;индекс&nbsp;поезда</th>
 							<th>Откуда</th>
@@ -44,12 +44,11 @@
 							<th>М</th>
 							<th>ПР</th>
 							<th>Охр</th>
-							<th>действия</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach var="p" items="${poezdList }" varStatus="status">
-							<tr id="ind${p.indPoezd.trim() }" data-target="${p.indPoezd.trim() }">
+							<tr id="ind${p.indPoezd.trim() }" data-ind="${p.indPoezd.trim() }" data-target="#prib" data-remote="pribmodal?indPoezd=${p.indPoezd.trim() }">
 								<td>${status.index + 1}</td>
 								<td><span>${p.nPoezd }</span></td>
 								<td><i class="fa fa-train"></i> ${p.stForm } ${p.nSost } ${p.stNazn }  </td>
@@ -65,13 +64,13 @@
 								<td>${p.marsh }</td>
 								<td>${p.prik }</td>
 								<td>${p.prOhr }</td>
-								<td><a data-toggle="modal" href="pribmodal?indPoezd=${p.indPoezd.trim() }" data-target="#soob_prib">
+								<%-- <td><a data-toggle="mymodal" href="pribmodal?indPoezd=${p.indPoezd.trim() }">
 								     <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></a>
 								<a href="prib?indPoezd=${p.indPoezd.trim() }">
-								     <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></a>   
+								     <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></a> 
+								 <a data-toggle="mymodal2" href="pribmodal?indPoezd=${p.indPoezd.trim() }" data-target="#prib">Click me</a> 
 								     
-								     
-								     </td>
+								     </td> --%> 
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -91,23 +90,18 @@
 	<div class="col-xs-12 collapse" id="dind${p.indPoezd.trim() }">
 		<div class="box">
 			<div class="box-header">
-				<h3 class="box-title">${p.indPoezd.trim() }</h3>
+				<h3 class="box-title">Индекс поезда - ${p.indPoezd.trim() }</h3>
 				<div class="box-tools pull-right">
-					<button class="btn btn-box-tool" data-widget="collapse">
-						<i class="fa fa-minus"></i>
-					</button>
-					<button class="btn btn-box-tool" data-widget="remove">
-						<i class="fa fa-times"></i>
-					</button>
+				    <button class="btn btn-box-tool" data-widget="print" data-toggle="tooltip" title="Печать"><i class="fa fa-print"></i></button>
 				</div>
 			</div>
 			<!-- /.box-header -->
 
 			<div class="box-body">
 				<div class="table-responsive">
-					<table id="tgnl" class="podhod context-menu-one dataTable">
+					<table id="tgnl" class="table table-bordered table-hover">
 						<thead>
-							<tr class="info">
+							<tr class="yellow">
 								<th>п/н</th>
 								<th>вагон</th>
 								<th>сб</th>
@@ -166,5 +160,11 @@
 
 </c:forEach>
 	
-
+<div class="modal fade" id="prib" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content" style="background-color: #eee;">
+            
+        </div>
+    </div>
+</div>
 

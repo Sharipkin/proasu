@@ -50,6 +50,7 @@
 	href="${pageContext.request.contextPath }/framework/jQuery-contextMenu/jquery.contextMenu.css">
 	
 <link rel="stylesheet" href="${pageContext.request.contextPath }/framework/css/user_style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/framework/css/menu.css">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath }/framework/plugins/datetimepicker/css/bootstrap-datetimepicker.css">
 
@@ -86,8 +87,7 @@
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
-				<h1>
-					
+				<h1>${param.title}
 				</h1>
 			</section>
 
@@ -98,8 +98,8 @@
 				</div>
 				<!-- /.row -->
 			</section>
+			
 			<!-- /.content -->
-
 			<!-- Your Page Content Here -->
 		</div>
 		<!-- /.content-wrapper -->
@@ -126,9 +126,9 @@
 	<!-- AdminLTE App -->
 	<script src="framework/dist/js/app.min.js"></script>
 
-	<!-- jQuery-contextMenu 
+	<!-- jQuery-contextMenu -->
 	<script src="framework/jQuery-contextMenu/jquery.contextMenu.js"></script>
-	<script src="framework/jQuery-contextMenu/contextMenu.js"></script>   -->
+	<!--<script src="framework/jQuery-contextMenu/contextMenu.js"></script>   -->
 	
 	<script src="framework/plugins/datetimepicker/js/moment-with-locales.js"></script>
 	<script src="framework/plugins/datetimepicker/js/bootstrap-datetimepicker.js"></script> 
@@ -162,7 +162,7 @@
     
     <script>
     $(document).ready(function () {
-	$('#podhod tr').not('#podhod tr.info').click(function() {
+	$('#podhod tr').not('#podhod tr.blue').click(function() {
 		//alert('#'+$(this).attr('id'));
 		//alert($('#'+$(this).attr('id')+' div').attr('id'));
 		//$(this).css( "background-color","red");
@@ -181,9 +181,13 @@
     
     $(document).ready(function() {
     	
+    	$('body').on('hidden.bs.modal', '.modal', function () {
+    		  $(this).removeData('bs.modal');
+    		});
+    	
     	// Support for AJAX loaded modal window.
     	// Focuses on first input textbox after it loads the window.
-		$('[data-toggle="modal"]').click(function(e) {
+		$('[data-toggle="mymodal"]').click(function(e) {
 			$('.modal').remove();
 			e.stopPropagation();
 			e.preventDefault();
@@ -198,8 +202,18 @@
 				  }).success(function() { $('input:text:visible:first').focus(); });
 			}
 		});
-
     	
+		$('[data-toggle="mymodal2"]').click(function(e) {
+			e.stopPropagation();
+			e.preventDefault();
+			var url = $(this).attr('href');
+			var name = $(this).attr('data-target');
+			$(name).modal({
+				  remote: url
+			})
+			
+		});
+
     	  /*$('[data-toggle="modal"]').click(function(e) {
     		  $('.modal').remove();
     		  e.stopPropagation();
@@ -210,6 +224,29 @@
     		      $(data).modal();
     		  });
     		});*/
+    		
+    		
+		$(function(){
+		    $('#podhod').contextMenu({
+		        selector: 'tr', 
+		        callback: function(key, options) {
+		            var m = "clicked: " + key + " on " + $(this).text();
+		            window.console && console.log(m) || alert(m); 
+		        },
+		        items: {
+		            "prib": {name: "201 - ПРИБЫТИЕ",
+		            	 callback: function(key, options) {
+		            		 var indPoezd = $(this).closest('tr').attr('data-ind');
+		            		 var target = $(this).closest('tr').attr('data-target');
+		            		 var url_remote = $(this).closest('tr').attr('data-remote');
+		                     $(target).modal({
+		       				  remote: url_remote
+		       			}); 
+		                 }
+		             }
+		        }
+		    });
+		});
     		
     	});
     

@@ -15,7 +15,8 @@ public class MainServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.getRequestDispatcher("WEB-INF/pages/index-view.jsp").forward(request, response);
+		response.sendRedirect("podhod");
+		//request.getRequestDispatcher("WEB-INF/pages/index-view.jsp").forward(request, response);
 	}
 
 }

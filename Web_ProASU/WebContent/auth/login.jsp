@@ -24,7 +24,7 @@
       <div class="login-logo">
           <img src="${pageContext.request.contextPath }/framework/dist/img/ktz.jpg" class="img-circle" alt="User Image">
           <br>
-        <a href="/WEB-INF/pages/main.html"><b>АСУ</b> Перевозки</a>
+        <a href="/WEB-INF/pages/main.html"><b>ИСУ</b> Перевозки</a>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
         <p class="login-box-msg">Введите данные, чтобы начать работу</p>

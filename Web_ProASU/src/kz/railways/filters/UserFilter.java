@@ -17,7 +17,6 @@ import javax.servlet.http.HttpSession;
 import kz.railways.beans.UserServiceBeanLocal;
 import kz.railways.entities.Napr;
 import kz.railways.entities.Park;
-import kz.railways.entities.Put;
 import kz.railways.entities.User;
 import kz.railways.workstation.NaprBeanLocal;
 import kz.railways.workstation.ParkiBeanLocal;
@@ -45,21 +44,31 @@ public class UserFilter implements Filter {
 
         if (remoteUser != null) {
             HttpSession session = request.getSession();
+            
+            User user = null;
 
             if (session.getAttribute("user") == null) {
-                User user = userService.find(remoteUser);
+                user = userService.find(remoteUser);
+                request.getSession().setAttribute("POPark", null);
                 session.setAttribute("user", user);
                 
                 List<Napr> naprs = naprBean.getNapr(user.getStation().getKod());        
                 session.setAttribute("naprs", naprs);    
-                
-                List<Park> POPark = parkiBean.getPOPark(user.getStation().getKod());
-                session.setAttribute("POPark", POPark);
-                
-                List<Put> sortPark = parkiBean.getSortPark(user.getStation().getKod());
-                session.setAttribute("sortPark", sortPark);
+      
+                //List<Put> sortPark = parkiBean.getSortPark(user.getStation().getKod());
+                //session.setAttribute("sortPark", sortPark);
 
             }
+            else
+            	user = (User) session.getAttribute("user");
+            
+            if (session.getAttribute("POPark") == null) {
+            	
+            	
+            	List<Park> POPark = parkiBean.getPOPark(user.getStation().getKod());
+                session.setAttribute("POPark", POPark);
+            }
+            
         }
 		chain.doFilter(req, response);
 	}
