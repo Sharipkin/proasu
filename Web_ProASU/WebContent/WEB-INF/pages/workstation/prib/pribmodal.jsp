@@ -39,7 +39,7 @@
 					<label class="col-sm-4 control-label">Направление прибытия</label>
 					<div class="col-sm-6">
 						<input class="form-control input-sm" type="text" name="stPer"
-							value="${poezd.stPer } ${poezd.naimStPer }" readonly>
+							value="${poezd.stPer } - ${poezd.naimStPer }" readonly>
 					</div>
 				</div>
 				<jsp:useBean id="POPark"
