@@ -16,6 +16,8 @@ import javax.sql.DataSource;
 import kz.railways.entities.Park;
 import kz.railways.entities.Put;
 import kz.railways.entities.Poezd;
+import kz.railways.entities.Vagon;
+
 import kz.railways.workstation.ParkiBeanLocal;
 
 /**
@@ -113,7 +115,38 @@ public class ParkiBean implements ParkiBeanLocal {
 				poezd.setNvagK(rsPut.getString("NVAG_N"));
 				poezd.setNvagN(rsPut.getString("NVAG_K"));
 				poezd.setRabLok(rsPut.getInt("RAB_LOK"));
-						
+				
+				List<Vagon> lpVagon = new ArrayList<>();
+				String sqlVagon = "SELECT NPP, NVAG, KOD_SOB, ROLIK, VESGR, ST_NAZNV, KODGR, GRPOL, MARSH, PRIK, GIVN, KOL_PL, GR_KONT, POR_KONT, ESR_VP, TARA_UT, PRIM FROM P_VAG "+
+				                "WHERE IND_POEZD = ? ORDER BY NPP";
+				
+				try(PreparedStatement psVagon = conn.prepareStatement(sqlVagon)){
+						psVagon.setString(1, poezd.getIndPoezd());						
+						ResultSet rsVagon = psVagon.executeQuery();
+						while(rsVagon.next()){
+							Vagon vagon = new Vagon();
+							vagon.setNpp(rsVagon.getInt("NPP"));
+							vagon.setnVag(rsVagon.getString("NVAG"));
+							vagon.setKodSob(rsVagon.getString("KOD_SOB"));
+							vagon.setRolik(rsVagon.getString("ROLIK")); 
+							vagon.setVesGr(rsVagon.getInt("VESGR"));  
+							vagon.setStNaznV(rsVagon.getString("ST_NAZNV")); 
+							vagon.setKodGr(rsVagon.getString("KODGR")); 
+							vagon.setGrPol(rsVagon.getString("GRPOL")); 
+							vagon.setMarsh(rsVagon.getString("MARSH")); 
+							vagon.setPrik(rsVagon.getString("PRIK")); 
+							vagon.setGivn(rsVagon.getString("GIVN")); 
+							vagon.setKolPl(rsVagon.getInt("KOL_PL"));
+							vagon.setGrKont(rsVagon.getInt("GR_KONT"));
+							vagon.setPorKont(rsVagon.getInt("POR_KONT"));
+							vagon.setEsrVp(rsVagon.getString("ESR_VP"));
+							vagon.setTaraUt(rsVagon.getInt("TARA_UT"));
+							vagon.setPrim(rsVagon.getString("PRIM"));
+							  
+							lpVagon.add(vagon);
+						}
+				}
+				poezd.setVagonList(lpVagon);
 				put.setPoezd(poezd);
 				lpPut.add(put);
 			}

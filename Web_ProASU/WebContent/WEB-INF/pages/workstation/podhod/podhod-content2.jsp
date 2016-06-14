@@ -4,7 +4,6 @@
 <%@ page import="java.util.List"%>
 <jsp:useBean id="poezdList"
 	type="java.util.List<kz.railways.entities.Poezd>" scope="request" />
-
 <div class="col-xs-12">
 	<div class="box">
 		<div class="box-header">

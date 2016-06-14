@@ -63,7 +63,9 @@ public class PribBean implements PribBeanLocal {
 				poezd.setIndPoezd(rs.getString("IND_POEZD"));
 				poezd.setStForm(rs.getString("ST_FORM"));
 				poezd.setnSost(rs.getString("N_SOST"));
-				poezd.setStNazn(rs.getString("ST_NAZN"));				
+				poezd.setStNazn(rs.getString("ST_NAZN"));
+				poezd.setKolOs(rs.getInt("KOL_OS"));
+				poezd.setKolRol(rs.getInt("KOL_ROL"));
 			}
 			
 			rs.close();
@@ -170,7 +172,7 @@ public class PribBean implements PribBeanLocal {
 			ps.setString(8,"œ–»¡");
 
 			ps.setTimestamp(9,this.dvOper);
-			ps.setInt(10,this.poezd.getKolRol());
+			ps.setInt(10,this.poezd.getKolOs());
 			ps.setInt(11,this.poezd.getKolRol());
 			ps.setString(12,this.kodSt);
 			

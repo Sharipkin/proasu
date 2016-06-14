@@ -5,7 +5,7 @@
 <!--Главная форма-->
 <html>
 <head>
-<title>Добро пожаловать в АСУ-Перевозки</title>
+<title>${param.title}  -  ИСУ Перевозки</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta
@@ -56,6 +56,8 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath }/framework/css/print.css" media="print" />
 
+<link rel="stylesheet" href="${pageContext.request.contextPath }/framework/css/parki.css"/>
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<!--Шапка и меню-->
@@ -87,8 +89,7 @@
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
-				<h1>${param.title}
-				</h1>
+				<h1>${param.title}</h1>
 			</section>
 
 			<!-- Main content -->

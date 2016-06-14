@@ -28,7 +28,7 @@
 <jsp:useBean id="user" type="kz.railways.entities.User" scope="session"/>
 	<c:choose>	
 		<c:when test="${user.station.kodS != 3 }">
-			<li class="treeview "><a href="#"><i class="fa fa-sitemap"></i><span>Парки станции</span> <i class="fa fa-angle-left pull-right"></i></a>
+			<li class="treeview parks"><a href="#"><i class="fa fa-sitemap"></i><span>Парки станции</span> <i class="fa fa-angle-left pull-right"></i></a>
 			<jsp:useBean id="POPark" type="java.util.List<kz.railways.entities.Park>" scope="session"/>
 				<ul class="treeview-menu">
 					<c:if test="${POPark.size()>0 }">
@@ -42,7 +42,7 @@
 							       				    <li id="put${put.nPut }"><a href="park?park=${park.nPark }&put=${put.nPut }"><i class="fa fa-train text-orange"></i>${put.nPut } - ${put.poezd.nPoezd } ${put.poezd.stForm } ${put.poezd.nSost } ${put.poezd.stNazn }</a></li>
 							    		    	</c:when>
 												<c:otherwise>
-							       					 <li id="put${put.nPut }"><a href="#"><i class="fa fa-train text-green"></i>${put.nPut }</a></li>
+							       					 <li id="put${put.nPut }"><a class="emptyPut" href="#"><i class="fa fa-train text-green"></i>${put.nPut }</a></li>
 							   					</c:otherwise>
 											</c:choose>
 										</c:forEach>

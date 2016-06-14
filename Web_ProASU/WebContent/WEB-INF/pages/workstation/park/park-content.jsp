@@ -9,96 +9,152 @@
 <div class="col-md-12">
 	<div class="box">
 		<div class="box-header with-border">
-			<h3 class="box-title">Номер поезда: <span class="badge bg-light-blue">${poezd.nPoezd }</span> &nbsp;&nbsp;&nbsp;Индекс&nbsp;поезда: <span class="badge bg-light-blue">${poezd.stForm } ${poezd.nSost } ${poezd.stNazn }</span> &nbsp;&nbsp;&nbsp;Операция: <u>${poezd.mnkdOp }</u>&nbsp;&nbsp;&nbsp;Время операции: <u><fmt:formatDate value="${poezd.dvOper }" pattern="dd.MM.yy hh:mm:ss" /></u></h3>
+			<table class="table table-bordered parki-table-header">
+				<tr>
+					<td>Номер поезда:</td>	              
+					<td>${poezd.nPoezd }</td>
+					<td>Индекс&nbsp;поезда:</td>	              
+					<td>${poezd.stForm } ${poezd.nSost } ${poezd.stNazn }</td>
+					<td>Операция:</td>
+					<td>${poezd.mnkdOp }</td>
+					
+				</tr>
+			</table>			 
 		</div><!-- /.box-header -->
 		<div class="box-body">
 			<div class="row">
 				<div class="col-md-4">
-					<table class="table table-bordered">
+					<table class="table table-bordered parki-table">
+						<tr>
+							<td>Время операции:</td>
+							<td><fmt:formatDate value="${poezd.dvOper }" pattern="dd.MM.yy hh:mm:ss" /></td>
+						</tr>
 						<tr>
   							<td>Количество вагонов</td>	              
-  							<td><span class="label label-success">${poezd.kolVag }</span></td>
+  							<td>${poezd.kolVag }</td>
 						</tr>
 						<tr>
   							<td>Вес поезда</td>
-  							<td><span class="label label-success">${poezd.brutto }</span></td>
+  							<td>${poezd.brutto }</td>
      					</tr>
      					<tr>
        						<td>Условная длина поезда</td>	              
-       						<td><span class="label label-success">${poezd.udl }</span></td>
+       						<td>${poezd.udl }</td>
 						</tr>
 						<tr>
-  							<td>Количсетво осей в поезде</td>
-  							<td><span class="label label-success">${poezd.kolOs }</span></td>
+  							<td>ОСИ</td>
+  							<td>${poezd.kolOs }/${poezd.kolRol }</td>
 						</tr>
-						<tr>
-  							<td>Количсетво роликов в поезде</td>
-  							<td><span class="label label-success">${poezd.kolRol }</span></td>
-						</tr>
-						
    					</table>
 				</div>
 				<div class="col-md-4">
-					<table class="table table-bordered">     					
+					<table class="table table-bordered parki-table">     					
 						<tr>
   							<td>Состояние ТГНЛ</td>
-  							<td><span class="label label-success">${poezd.sTgnl }</span></td>
+  							<td>${poezd.sTgnl }</td>
        					</tr>
        					<tr>
        						<td>Характеристика поезда</td>	              
-       						<td><span class="label label-success">${poezd.harP }</span></td>
+       						<td>${poezd.harP }</td>
 						</tr>
 						<tr>
   							<td>Индекс негабаритности</td>
-  							<td><span class="label label-success">${poezd.negab }</span></td>
+  							<td>${poezd.negab }</td>
 						</tr>
 						<tr>
   							<td>Отметка о живности</td>
-  							<td><span class="label label-success">${poezd.givn }</span></td>
+  							<td>${poezd.givn }</td>
 						</tr>
 						<tr>
   							<td>Маршрут</td>
-  							<td><span class="label label-success">${poezd.marsh }</span></td>
+  							<td>${poezd.marsh }</td>
        					</tr>
      				</table>
 				</div>
 				<div class="col-md-4">
-					<table class="table table-bordered">
+					<table class="table table-bordered parki-table">
 						<tr>
   							<td>Код прикрытия</td>
-  							<td><span class="label label-success">${poezd.prik }</span></td>
+  							<td>${poezd.prik }</td>
 						</tr>
 						<tr>
   							<td>Признак охраны</td>
-  							<td><span class="label label-success">${poezd.prOhr }</span></td>
+  							<td>${poezd.prOhr }</td>
        					</tr>
        					<tr>
   							<td>Номер головного вагона</td>
-  							<td><span class="label label-success">${poezd.nvagN }</span></td>
+  							<td>${poezd.nvagN }</td>
        					</tr>
        					<tr>
   							<td>Номер хвостового вагона</td>
-  							<td><span class="label label-success">${poezd.nvagK }</span></td>
+  							<td>${poezd.nvagK }</td>
        					</tr>            					
        					<tr>
   							<td>Признак работы с локомотивом</td>
-  							<td><span class="label label-success">${poezd.rabLok }</span></td>
+  							<td>${poezd.rabLok }</td>
        					</tr>    
      				</table>
 				</div>
 			</div>  
 		</div><!-- /.box-body -->
-		<div class="box box-solid collapsed-box">
-          <div class="box-header with-border">
-            <h3 class="box-title">Просмотр ТГНЛ</h3>
-            <div class="box-tools pull-right">
-              <button class="btn btn-sm " data-widget="collapse"><i class="fa fa-plus"></i></button>
-            </div><!-- /.box-tools -->
-          </div><!-- /.box-header -->
-          <div class="box-body">
-            
-          </div><!-- /.box-body -->
-        </div><!-- /.box -->
-		    
+		<c:if test="${poezd.vagonList.size() > 0}">
+			<div class="box box-solid collapsed-box">
+	          <div class="box-header with-border">
+	            <h3 class="box-title">Просмотр ТГНЛ</h3>
+	            <div class="box-tools pull-right">
+	              <button class="btn btn-sm " data-widget="collapse"><i class="fa fa-plus"></i></button>
+	            </div><!-- /.box-tools -->
+	          </div><!-- /.box-header -->
+	          <div class="box-body">
+	          	<table class="table table-bordered table-hover table-condensed">
+					<thead>
+						<tr class="blue">
+							<th>п/н</th>
+							<th>Вагон</th>
+							<th>сб</th>
+							<th>р</th>
+							<th>вес</th>
+							<th>назн</th>
+							<th>груз</th>
+							<th>получ</th>
+							<th>м</th>
+							<th>п</th>
+							<th>ж</th>
+							<th>пл</th>
+							<th>гк</th>
+							<th>пк</th>
+							<th>КВП</th>
+							<th>УВТ</th>
+							<th>примеч</th>
+						</tr>
+					</thead>
+					<tbody>
+	            <c:forEach var="vagon" items="${poezd.vagonList }">	
+	         		<tr>
+						<td>${vagon.npp }</td>
+						<td>${vagon.nVag }</td>
+						<td>${vagon.kodSob }</td>
+						<td>${vagon.rolik }</td>
+						<td>${vagon.vesGr }</td>
+						<td>${vagon.stNaznV }</td>
+						<td>${vagon.kodGr }</td>
+						<td>${vagon.grPol }</td>
+						<td>${vagon.marsh }</td>
+						<td>${vagon.prik }</td>
+						<td>${vagon.givn }</td>
+						<td>${vagon.kolPl }</td>
+						<td>${vagon.grKont }</td>
+						<td>${vagon.porKont }</td>
+						<td>${vagon.esrVp }</td>
+						<td>${vagon.taraUt }</td>
+						<td>${vagon.prim }</td>
+					</tr>
+	            		
+	            </c:forEach>
+	            </tbody>
+	     			</table>
+	          </div><!-- /.box-body -->
+	        </div><!-- /.box -->
+		 </c:if>
 	</div><!-- /.box -->
 </div>

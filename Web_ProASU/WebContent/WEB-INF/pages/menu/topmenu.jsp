@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:useBean id="user" type="kz.railways.entities.User" scope="session" />
 
+<div class="navbar-collapse pull-left collapse">
 <ul class="nav navbar-nav">
 	<li class="dropdown"><a href="#" class="dropdown-toggle"
 		data-toggle="dropdown" aria-expanded="false">${user.station.naim }
@@ -15,4 +16,5 @@
 			</c:forEach>
 		</ul></li>
 </ul>
+</div>
 

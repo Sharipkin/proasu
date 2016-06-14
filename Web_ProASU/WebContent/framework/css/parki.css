@@ -1,0 +1,54 @@
+@CHARSET "UTF-8";
+
+a.active-park{
+	background-color:#3C8DBC;
+	color: white;
+}
+
+.parki-table-header{
+	border:none;
+	padding-bottom:0;
+	border-spacing: 5px;
+    border-collapse: separate;
+    width: 600px;
+    margin: 0 auto;
+}
+}
+.parki-table-header > tbody > tr > td{
+	border:none;
+}
+.parki-table-header > tbody > tr > td:nth-child(odd){
+	text-align: right;
+	border:none;
+}
+.parki-table-header > tbody > tr > td:nth-child(even){
+	background-color: #32a570;
+    color: white;
+    text-align: center;
+    order-radius: 3px;
+        
+}
+.parki-table > tbody > tr > td,
+.parki-table-header > tbody > tr > td{
+	padding: 3px 5px;
+}
+
+.parki-table > tbody > tr > td:first-child{
+    background-color: #409cde;
+    color:black;
+}
+
+.parki-table > tbody > tr > td:last-child{
+	background-color: #32a570;
+    color: black;
+    text-align: center;
+}
+
+.parki-table > tbody > tr > td > span.label{
+	font-size:14px;
+	font-weight:normal;
+}
+
+.badge-parki{
+	font-size:14px;
+}

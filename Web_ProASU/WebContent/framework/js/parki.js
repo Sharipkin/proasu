@@ -16,14 +16,16 @@ $(document).ready(function () {
 			$("ul.sidebar-menu > li.treeview:last").addClass('active');
 			//$("ul.sidebar-menu > li.treeview:last > ul.treeview-menu > li.kodS"+data['kodS']).addClass('active');
 			$("ul.sidebar-menu > li.treeview:last > ul.treeview-menu > li#park"+data['park']).addClass('active');
-			$("ul.sidebar-menu > li.treeview:last > ul.treeview-menu > li#park"+data['park']+' ul.treeview-menu > li#put'+data['put']+ ' > a').css('color', 'red');
+			$("ul.sidebar-menu > li.treeview:last > ul.treeview-menu > li#park"+data['park']+' ul.treeview-menu > li#put'+data['put']).addClass('active');
+			$(".content-header > h1").text("Парк: "+data['park']+" путь: "+data['put']);
 		}
 		
-	$("qwea").click(function(){
+	$("a.emptyPut").click(function(){
 		var put = $(this).parent("li").attr("id");
 		if (put.substring(0,3)=='put'){
 			$(".content").empty();
-			$("ul.sidebar-menu > li.treeview:last > ul.treeview-menu > li > ul.treeview-menu > li > a").css('color', '#8aa4af');
+			$(".content-header > h1").empty();
+			$("ul.sidebar-menu > li.treeview:last > ul.treeview-menu > li > ul.treeview-menu > li").removeClass('active');
 		}
 	});
 });
