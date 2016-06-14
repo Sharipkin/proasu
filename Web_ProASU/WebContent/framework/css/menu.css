@@ -61,3 +61,10 @@
     margin-right: 300px;
   }
 }
+
+.sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a > span:not(.pull-right),
+  .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu {
+
+    width: 300px;
+
+  }

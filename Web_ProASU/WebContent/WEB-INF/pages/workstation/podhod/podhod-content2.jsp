@@ -48,7 +48,10 @@
 					</thead>
 					<tbody>
 						<c:forEach var="p" items="${poezdList }" varStatus="status">
-							<tr id="ind${p.indPoezd.trim() }" data-ind="${p.indPoezd.trim() }" data-target="#prib" data-remote="pribmodal?indPoezd=${p.indPoezd.trim() }">
+							<tr id="ind${p.indPoezd.trim() }" data-ind="${p.indPoezd.trim() }" 
+							                                  data-target="#prib" 
+							                                  data-remote="pribmodal?indPoezd=${p.indPoezd.trim() }"
+							                                  data-cat="<c:if test="${p.stForm == '000000'}">p</c:if>">
 								<td>${status.index + 1}</td>
 								<td><span>${p.nPoezd }</span></td>
 								<td><i class="fa fa-train"></i> ${p.stForm } ${p.nSost } ${p.stNazn }  </td>
@@ -80,7 +83,9 @@
 			<!--table-responsive-->
 		</div>
 		<!-- /.box-body -->
-
+		<div class="box-footer">
+              <button type="button" class="btn btn-default pull-right">Печать</button>
+        </div>
 
 	</div>
 	<!-- /.box-->
@@ -151,10 +156,12 @@
 
 			</div>
 			<!-- /.box-body -->
-
+			<div class="box-footer">
+              <button type="button" class="btn btn-default pull-right">Печать</button>
+        </div>
 		</div>
 		<!-- /.box-->
-
+		
 	</div>
 	<!-- /.col -->
 

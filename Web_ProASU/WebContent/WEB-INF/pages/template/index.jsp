@@ -234,7 +234,10 @@
 		            window.console && console.log(m) || alert(m); 
 		        },
 		        items: {
-		            "prib": {name: "201 - ПРИБЫТИЕ",
+		            "prib": {name: "201 - ПРИБЫТИЕ", disabled: function(key, opt) { 
+	                    return $(this).closest('tr').attr('data-cat')=='p'?true:false;
+	                    
+	                },
 		            	 callback: function(key, options) {
 		            		 var indPoezd = $(this).closest('tr').attr('data-ind');
 		            		 var target = $(this).closest('tr').attr('data-target');

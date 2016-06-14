@@ -39,10 +39,10 @@
 										<c:forEach var="put" items="${park.putList }">
 											<c:choose>
 												<c:when test="${put.poezd.nPoezd != null}">
-							       				    <li id="put${put.nPut }"><a href="park?park=${park.nPark }&put=${put.nPut }"><i class="fa fa-train" style="color:white"></i>${put.nPut } - ${put.poezd.nPoezd } ${put.poezd.stForm } ${put.poezd.nSost } ${put.poezd.stNazn }</a></li>
+							       				    <li id="put${put.nPut }"><a href="park?park=${park.nPark }&put=${put.nPut }"><i class="fa fa-train text-orange"></i>${put.nPut } - ${put.poezd.nPoezd } ${put.poezd.stForm } ${put.poezd.nSost } ${put.poezd.stNazn }</a></li>
 							    		    	</c:when>
 												<c:otherwise>
-							       					 <li id="put${put.nPut }"><a href="#"><i class="fa fa-train" style="color:black"></i>${put.nPut }</a></li>
+							       					 <li id="put${put.nPut }"><a href="#"><i class="fa fa-train text-green"></i>${put.nPut }</a></li>
 							   					</c:otherwise>
 											</c:choose>
 										</c:forEach>

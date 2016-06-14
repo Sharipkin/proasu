@@ -2,6 +2,9 @@ package kz.railways.controller.workstation.prib;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -52,7 +55,17 @@ public class PribModalServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-		Timestamp dvOper = Timestamp.valueOf(request.getParameter("dvOper"));
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy hh:mm");
+	    Date parsedDate = null;
+		try {
+			parsedDate = dateFormat.parse(request.getParameter("dvOper"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		Timestamp dvOper = new java.sql.Timestamp(parsedDate.getTime());
+		
+		
+		//Timestamp dvOper = Timestamp.valueOf(request.getParameter("dvOper"));
 		
 		String nPoezd = request.getParameter("nPoezd");
 		

@@ -85,7 +85,8 @@
             $(function () {
                 $('#datetimepicker').datetimepicker({
                     locale: 'ru',
-                    format: 'YYYY-MM-DD HH:mm:ss'
+                    //format: 'YYYY-MM-DD HH:mm:ss'
+                    format: 'DD.MM.YYYY HH:mm'
                 });
             });
         </script>
