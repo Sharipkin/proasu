@@ -40,10 +40,12 @@ public class PribBean implements PribBeanLocal {
 		
 		Poezd poezd = new Poezd();
 
-		String sql = "select ST_PER,N_POEZD,IND_POEZD,ST_FORM,N_SOST,ST_NAZN,PR_SPIS,DV_OTPR, "
+		String sql = "select ST_PER,S.NAIM_ST as NAIM_ST_PER,N_POEZD,IND_POEZD,ST_FORM,N_SOST,ST_NAZN,PR_SPIS,DV_OTPR, "
 				+ "UDL,BRUTTO,PRIK,NEGAB,GIVN,MARSH,NETTO,KOL_VAG,NVAG_N,NVAG_K,KOL_OS,KOL_ROL,PR_OHR,"
-				+ "HAR_P,KOD_OP,DV_OPER,PR_DOST,KOD_ST,NBE"
-				+ " from P_TEK where IND_POEZD Like ? and KOD_ST Like '000000'";
+				+ "HAR_P,KOD_OP,DV_OPER,PR_DOST,P_TEK.KOD_ST,NBE"
+				+ " from P_TEK"
+				+ " left join STAN as S on S.KOD_ST = P_TEK.ST_PER "
+				+ " where P_TEK.IND_POEZD Like ? and P_TEK.KOD_ST Like '000000'";
 		
 		try(Connection conn = dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);)
@@ -56,6 +58,7 @@ public class PribBean implements PribBeanLocal {
 			while (rs.next())
 			{
 				poezd.setStPer(rs.getString("ST_PER"));
+				poezd.setNaimStPer(rs.getString("NAIM_ST_PER"));
 				poezd.setnPoezd(rs.getString("N_POEZD"));
 				poezd.setIndPoezd(rs.getString("IND_POEZD"));
 				poezd.setStForm(rs.getString("ST_FORM"));
